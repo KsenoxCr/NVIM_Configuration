@@ -110,6 +110,9 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>w', group = '[W]orkspace' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      -- Surrond
+      { 'cs', '<Plug>Csurround', desc = 'Change Surrounding' },
+      { 'ds', '<Plug>Dsurround', desc = 'Delete Surrounding' },
     },
   },
 }

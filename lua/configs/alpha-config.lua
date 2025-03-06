@@ -1,6 +1,12 @@
 -- alpha-config.lua
 
-local status_ok, alpha = pcall(require, 'plugins.alpha')
+-- Adding nvim-data\lazy\alpha-nvim\lua to package path
+-- to require it, using dofile would allow for loading
+-- it twice, leading to possible unexpected behaviour
+
+local alphaPath = vim.fn.stdpath 'data' .. '\\lazy\\alpha-nvim\\lua\\?.lua'
+package.path = package.path .. ';' .. alphaPath
+local status_ok, alpha = pcall(require, 'alpha')
 if not status_ok then
   return
 end
