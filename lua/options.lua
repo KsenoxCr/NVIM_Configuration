@@ -1,17 +1,22 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+-- NOTE: GLOBALS
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+local wikiDir = os.getenv 'USERPROFILE' .. '\\work\\Gods_Plan\\'
+
+vim.g.vimwiki_list = {
+  { path = wikiDir, syntax = 'markdown', ext = '.md', custom_wiki2html = 'pandoc', links_space_char = '_', list_type = 2 },
+}
+
+-- NOTE: OPTIONS
+
+vim.opt.compatible = false
+vim.cmd 'filetype plugin on'
 
 -- Make line numbers default
+vim.opt.number = true
 vim.opt.relativenumber = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
@@ -74,3 +79,11 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- NOTE: VimTex
+
+vim.g.vimtex_view_method = 'general' --redundant because general is default value
+vim.g.vimtex_view_general_viewer = 'C:\\Users\\kseno\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe'
+vim.g.vimtex_compiler_method = 'latexmk'
+vim.g.vimtex_quickfix_mode = 0 -- 0: disabled, 1: errors, 2: errors and warnings
+vim.g.vimtex_mappings_enabled = 1 -- Uses default keymaps (<leader>l...)

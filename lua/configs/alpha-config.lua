@@ -1,17 +1,12 @@
 -- alpha-config.lua
 
--- Adding nvim-data\lazy\alpha-nvim\lua to package path
--- to require it, using dofile would allow for loading
--- it twice, leading to possible unexpected behaviour
-
-local alphaPath = vim.fn.stdpath 'data' .. '\\lazy\\alpha-nvim\\lua\\?.lua'
-package.path = package.path .. ';' .. alphaPath
-local status_ok, alpha = pcall(require, 'alpha')
+local status_ok, alpha = pcall(require, 'lazy.alpha-nvim.lua.alpha')
 if not status_ok then
+  print 'alpha status not ok'
   return
 end
 
-local dashboard = require 'alpha.themes.dashboard'
+local dashboard = require 'lazy.alpha-nvim.lua.alpha.themes.dashboard'
 dashboard.section.header.val = {
 
   [[          ▀████▀▄▄              ▄█ ]],
@@ -27,8 +22,9 @@ dashboard.section.header.val = {
 
 dashboard.section.buttons.val = {
   dashboard.button('f', '󰈞  Find file', ':Telescope find_files <CR>'),
-  dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
-  dashboard.button('E', '  Explorer', ':Fern .'),
+  dashboard.button('E', '  New file', ':ene <BAR> startinsert <CR>'),
+  dashboard.button('e', '  Explorer', ':Fern . <CR>'),
+  dashboard.button('w', '󰈞  VimWiki', ':VimwikiIndex <CR>'),
   dashboard.button('r', '  Recently used files', ':Telescope oldfiles <CR>'),
   dashboard.button('t', '  Find text', ':Telescope live_grep <CR>'),
   dashboard.button('c', '  Configuration', ':e $LOCALAPPDATA/nvim/init.lua <CR>'),
@@ -36,7 +32,7 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-  return "Don't Stop Until You are Proud..."
+  return 'Work till your head hurts -E.Musk'
 end
 
 dashboard.section.footer.val = footer()

@@ -197,6 +197,7 @@ return {
     local servers = {
       clangd = {},
       csharp_ls = {},
+      texlab = {},
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
@@ -242,6 +243,7 @@ return {
     vim.list_extend(ensure_installed, {
       'clangd',
       'csharp_ls',
+      'texlab',
       'stylua', -- Used to format Lua code
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }

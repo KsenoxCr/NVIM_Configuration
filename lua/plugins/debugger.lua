@@ -1,4 +1,4 @@
--- debug.lua
+-- debugger.lua
 --
 -- Shows how to use the DAP plugin to debug your code.
 --
@@ -34,6 +34,13 @@ return {
       desc = 'Debug: Start/Continue',
     },
     {
+      '<S-F5>',
+      function()
+        require('dap').terminate()
+      end,
+      desc = 'Debug: Stop',
+    },
+    {
       '<F1>',
       function()
         require('dap').step_into()
@@ -50,7 +57,7 @@ return {
     {
       '<F3>',
       function()
-        require('dap').step_out()
+        require('dap').step_out()()
       end,
       desc = 'Debug: Step Out',
     },
@@ -81,6 +88,8 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    dap.defaults.fallback.terminal_win_cmd = 'belowright split new'
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -95,6 +104,41 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
+        'netcoredbg',
+      },
+    }
+
+    -- netcoredbg adapter for .NET
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = 'netcoredbg',
+      args = { '--interpreter=vscode' },
+    }
+
+    -- .NET configuration
+    dap.configurations.cs = {
+      {
+        name = 'Launch .NET Core',
+        type = 'coreclr',
+        request = 'launch',
+        preLaunchTask = function()
+          local build_output = vim.fn.system 'dotnet build -c Debug 2>&1'
+
+          if vim.v.shell_error ~= 0 then
+            print('❌ Build failed:\n' .. build_output)
+            return false -- Prevents launching the debugger
+          end
+
+          print '✅ Build succeeded!'
+        end,
+        program = function()
+          return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end,
+        console = 'integratedTerminal', -- This tells netcoredbg to use the integrated terminal.
+        internalConsoleOptions = 'openOnFirstSessionStart', -- Opens the DAP UI console automatically
+        terminal = 'integrated', -- Force integrated terminal
+        stopAtEntry = false,
       },
     }
 
@@ -120,17 +164,18 @@ return {
       },
     }
 
-    -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    -- NOTE: Change breakpoint icons
+
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close

@@ -1,3 +1,13 @@
+package.path = package.path .. ';' .. os.getenv 'LOCALAPPDATA' .. '\\nvim-data\\lazy\\nvim-treesitter\\lua\\?.lua'
+local status_ok, treesitter_install = pcall(require, 'nvim-treesitter.install')
+if not status_ok then
+  print 'Treesitter status: not ok'
+  print('Error:', treesitter_install)
+  return {}
+end
+
+treesitter_install.compilers = { 'clang' }
+
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
@@ -13,13 +23,20 @@ return { -- Highlight, edit, and navigate code
       --  If you are experiencing weird indenting issues, add the language to
       --  the list of additional_vim_regex_highlighting and disabled languages for indent.
       additional_vim_regex_highlighting = { 'ruby' },
+
+      indent = { enable = true, disable = { 'ruby' } },
     },
-    indent = { enable = true, disable = { 'ruby' } },
+    config = function()
+      -- NOTE: Ghetto fix for having to reinstall parsers
+      local parsers = 'lua markdown c_sharp cpp'
+      local ts_update = string.format('TSUpdate %s', parsers)
+      vim.cmd 'TSUpdate '
+    end,
   },
-  -- There are additional nvim-treesitter modules that you can use to interact
-  -- with nvim-treesitter. You should go explore a few and see what interests you:
-  --
-  --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-  --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-  --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 }
+-- There are additional nvim-treesitter modules that you can use to interact
+-- with nvim-treesitter. You should go explore a few and see what interests you:
+--
+--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
+--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
+--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects

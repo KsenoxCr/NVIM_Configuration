@@ -1,19 +1,11 @@
+-- NOTE: nvim-data to package.path for requires
+package.path = package.path .. ';' .. os.getenv 'LOCALAPPDATA' .. '\\nvim-data\\?.lua'
+
+vim.opt.encoding = 'utf-8' -- Sets the internal character encoding.
+vim.opt.fileencoding = 'utf-8' -- Sets the encoding for files
+
 require 'options'
-require 'keymaps'
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+require 'autocmds'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -62,6 +54,10 @@ require('lazy').setup {
     },
   },
 }
+
+require 'keymaps'
+require 'configs.init'
+-- require 'custom.init'
 
 -- Sets colors to comments, line numbers Above, Current and Below  in this order
 vim.o.termguicolors = true
