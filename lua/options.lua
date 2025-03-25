@@ -12,6 +12,8 @@ vim.g.vimwiki_list = {
 
 -- NOTE: OPTIONS
 
+vim.o.conceallevel = 0
+
 vim.opt.compatible = false
 vim.cmd 'filetype plugin on'
 

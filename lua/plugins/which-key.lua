@@ -67,8 +67,9 @@ return { -- Useful plugin to show you pending keybinds.
     },
     -- Document existing key chains
     spec = {
-      { '<leader>a', '<cmd>Alpha<cr>', desc = 'Alpha' },
-      { '<leader>e', '<cmd>Fern . <cr>', desc = 'Explorer' },
+      { '<leader>a', '<cmd>Alpha<CR>', desc = 'Alpha' },
+      { '<leader>e', '<cmd>Fern %:h<CR>', desc = 'Explorer (Current Buf)' },
+      { '<leader>E', '<cmd>Fern .<CR>', desc = 'Explorer (CWD)' },
       { '<leader>p', '<cmd>Lazy<CR>', desc = 'Plugin Manager' },
       -- { '<leader>q', '<cmd>wqall!<CR>', desc = 'Quit' },
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
