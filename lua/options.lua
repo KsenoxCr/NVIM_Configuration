@@ -11,11 +11,22 @@ vim.g.global_templatepath = vim.g.global_workpath .. '/templates'
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-local wikiDir = os.getenv 'USERPROFILE' .. '\\work\\Gods_Plan\\'
+-- NOTE: OS-Agnostic vimwiki directory
 
-vim.g.vimwiki_list = {
-  { path = wikiDir, syntax = 'markdown', ext = '.md', custom_wiki2html = 'pandoc', links_space_char = '_', list_type = 2 },
-}
+local os_name = jit.os
+local wikiDir
+
+if os_name == 'Windows' then
+  wikiDir = os.getenv 'USERPROFILE' .. '\\work\\Gods_Plan\\'
+elseif os_name == 'Linux' then
+  wikiDir = os.getenv 'HOME' .. '/Work/Gods_Plan'
+end
+
+if require('utils').is_dir(wikiDir) then
+  vim.g.vimwiki_list = {
+    { path = wikiDir, syntax = 'markdown', ext = '.md', custom_wiki2html = 'pandoc', links_space_char = '_', list_type = 2 },
+  }
+end
 
 -- NOTE: OPTIONS
 
