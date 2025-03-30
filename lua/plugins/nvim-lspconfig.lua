@@ -8,6 +8,8 @@ return {
     { 'williamboman/mason.nvim', opts = {} },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'nvimtools/none-ls.nvim',
+    'jay-babu/mason-null-ls.nvim',
 
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
@@ -198,6 +200,22 @@ return {
       clangd = {},
       csharp_ls = {},
       texlab = {},
+      html = {},
+      cssls = {},
+      ts_ls = {},
+      emmet_ls = {
+        filetypes = {
+          'html',
+          'css',
+          'scss',
+          'javascript',
+          'javascriptreact',
+          'typescriptreact',
+          'powershell-editor-services',
+        },
+      },
+      intelephense = {},
+
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
@@ -244,7 +262,14 @@ return {
       'clangd',
       'csharp_ls',
       'texlab',
-      'stylua', -- Used to format Lua code
+      'stylua',
+      'html',
+      'cssls',
+      'typescript-language-server',
+      'emmet_ls',
+      'intelephense',
+      'powershell-editor-services',
+      'markdownlint',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -260,6 +285,23 @@ return {
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
         end,
+      },
+    }
+    local null_ls = require 'null-ls'
+
+    require('mason-null-ls').setup {
+      ensure_installed = {
+        'markdownlint', -- Lua formatter
+      },
+      automatic_installation = true,
+    }
+
+    null_ls.setup {
+      sources = {
+        -- Formatters
+
+        -- Linters
+        null_ls.builtins.diagnostics.markdownlint,
       },
     }
   end,

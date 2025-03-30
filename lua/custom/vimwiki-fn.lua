@@ -63,7 +63,7 @@ function M.CreateTemplate() end
 
 -- vim.api.nvim_create_user_command('ChooseTemplate', M.ChooseTemplate(), {})
 --
-function M.AddPriorityTag()
+function M.AddTag()
   local input = vim.fn.nr2char(vim.fn.getchar())
   if vim.bo.filetype == 'vimwiki' then
     if input == '1' then
@@ -72,6 +72,10 @@ function M.AddPriorityTag()
       vim.api.nvim_put({ '🔆 ' }, 'c', true, true)
     elseif input == '3' then
       vim.api.nvim_put({ '💤 ' }, 'c', true, true)
+    elseif input == '4' then
+      vim.api.nvim_put({ '💡 ' }, 'c', true, true)
+    elseif input == '5' then
+      vim.api.nvim_put({ '❌ ' }, 'c', true, true)
     end
   end
 end

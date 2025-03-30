@@ -4,20 +4,8 @@ local del = vim.keymap.del
 -- NOTE: Deleting 's' so leap.nvim can use it
 -- del('n', 's')
 
--- NOTE: Remapping Substitute and replace line
+-- NOTE: Inserting empty lines
 
-map('n', 't', '<cmd>VimwikiToggleListItem<CR>', { noremap = true, silent = true })
-
--- NOTE: VimWiki
-
-map('n', 't', '<cmd>VimwikiToggleListItem<CR>', { noremap = true, silent = true })
-map('n', 'T', ':VimwikiTable ', { noremap = true })
-map('n', 'H', '<cmd>VimwikiTableMoveColumnLeft<CR>', { noremap = true, silent = true })
-map('n', 'L', '<cmd>VimwikiTableMoveColumnRight<CR>', { noremap = true, silent = true })
-map('n', '<C-p>', require('custom.vimwiki-fn').AddPriorityTag, { desc = 'Add priority tag' })
-
--- [[ Basic Keymaps ]]
---  See `:help map()`
 map('n', 'm', 'o<Esc>', { noremap = true, silent = true })
 map('n', 'M', 'O<Esc>', { noremap = true, silent = true })
 
@@ -45,12 +33,6 @@ map('n', 'fn', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic messa
 -- map('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
-map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- del('n', '<C-h') -- Deleting fern action-leave -- Deleting fern action-leave
 
 -- Keybinds to make split navigation easier.
@@ -65,6 +47,23 @@ map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
 
 map('n', '<C-x>', '<C-v>', { desc = 'Visual-Block Mode' })
 
+-- NOTE: Vim-visual-multiline
+
+map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '', noremap = true })
+
+map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = '', noremap = true })
+
 -- NOTE: Overriding nvim default keymaps
 
 map('x', 'u', '<Nop>')
+map('n', '.', '<Nop>')
+
+-- NOTE: Template
+
+map('n', '<leader>T', function()
+  vim.api.nvim_feedkeys(':InsertTemplate ', 'n', true)
+end, { desc = 'Insert Template (currentBuf)' })
+
+-- NOTE: Telescope
+
+map('n', '<leader>st', '<CMD>Telescope find_template<CR>', { desc = 'Telescope templates' })

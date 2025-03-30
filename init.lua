@@ -6,6 +6,7 @@ vim.opt.fileencoding = 'utf-8' -- Sets the encoding for files
 
 require 'options'
 require 'autocmds'
+require 'usercmds'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -55,6 +56,8 @@ require('lazy').setup {
   },
 }
 
+require('telescope').load_extension 'find_template'
+
 require 'keymaps'
 require 'configs.init'
 -- require 'custom.init'
@@ -65,3 +68,5 @@ vim.api.nvim_set_hl(0, 'Comment', { fg = '#A0A0A0' })
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#51B3EC', bold = true })
 vim.api.nvim_set_hl(0, 'LineNr', { fg = 'white', bold = true })
 vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#ca7872', bold = true })
+
+-- vim.cmd.echo 'g:'

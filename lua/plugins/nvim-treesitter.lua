@@ -14,7 +14,25 @@ return { -- Highlight, edit, and navigate code
   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
   opts = {
-    ensure_installed = { 'bash', 'cpp', 'c_sharp', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+    ensure_installed = {
+      'bash',
+      'cpp',
+      'c_sharp',
+      'c',
+      'diff',
+      'html',
+      'css',
+      'javascript',
+      'php',
+      'lua',
+      'luadoc',
+      'markdown',
+      'markdown_inline',
+      'query',
+      'powershell',
+      'vim',
+      'vimdoc',
+    },
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {
@@ -26,12 +44,17 @@ return { -- Highlight, edit, and navigate code
 
       indent = { enable = true, disable = { 'ruby' } },
     },
-    config = function()
-      -- NOTE: Ghetto fix for having to reinstall parsers
-      local parsers = 'lua markdown c_sharp cpp'
-      local ts_update = string.format('TSUpdate %s', parsers)
-      vim.cmd 'TSUpdate '
-    end,
+    -- playground = {
+    --   enable = true,
+    --   updatetime = 25, -- Debounce time for updates (ms)
+    --   persist_queries = false, -- Don’t save queries across sessions
+    -- },
+    -- config = function()
+    --   -- NOTE: Ghetto fix for having to reinstall parsers
+    --   local parsers = 'lua markdown c_sharp cpp'
+    --   local ts_update = string.format('TSUpdate %s', parsers)
+    --   vim.cmd 'TSUpdate '
+    -- end,
   },
 }
 -- There are additional nvim-treesitter modules that you can use to interact

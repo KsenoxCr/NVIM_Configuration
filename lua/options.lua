@@ -1,6 +1,13 @@
+-- NOTE: Environment
+
+vim.env.LANG = 'en_US.UTF-8'
+
 -- NOTE: GLOBALS
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.global_workpath = '~/Work'
+vim.g.global_templatepath = vim.g.global_workpath .. '/templates'
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 

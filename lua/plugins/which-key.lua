@@ -69,7 +69,7 @@ return { -- Useful plugin to show you pending keybinds.
     spec = {
       { '<leader>a', '<cmd>Alpha<CR>', desc = 'Alpha' },
       { '<leader>e', '<cmd>Fern %:h<CR>', desc = 'Explorer (Current Buf)' },
-      { '<leader>E', '<cmd>Fern .<CR>', desc = 'Explorer (CWD)' },
+      { '<leader>E', '<cmd>Fern ' .. vim.g.global_workpath .. ' -reveal=%<CR>', desc = 'Explorer (CWD)' },
       { '<leader>p', '<cmd>Lazy<CR>', desc = 'Plugin Manager' },
       -- { '<leader>q', '<cmd>wqall!<CR>', desc = 'Quit' },
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
@@ -89,7 +89,8 @@ return { -- Useful plugin to show you pending keybinds.
   --   pcall(vim.keymap.del, 'n', '<Space>w') -- Deleting write mapping
   -- end,
   config = function(_, opts)
-    require('which-key').setup(opts)
+    local which_key = require 'which-key'
+    which_key.setup(opts)
     pcall(vim.keymap.del, 'n', '<Space>w') -- Deleting write mapping
   end,
 }
