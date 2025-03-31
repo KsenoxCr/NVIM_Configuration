@@ -1,12 +1,12 @@
 -- alpha-config.lua
 
-local status_ok, alpha = pcall(require, 'lazy.alpha-nvim.lua.alpha')
+local status_ok, alpha = pcall(require, 'alpha')
 if not status_ok then
   print 'alpha status not ok'
   return
 end
 
-local dashboard = require 'lazy.alpha-nvim.lua.alpha.themes.dashboard'
+local dashboard = require 'alpha.themes.dashboard'
 dashboard.section.header.val = {
 
   [[          ▀████▀▄▄              ▄█ ]],
