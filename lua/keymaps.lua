@@ -4,6 +4,9 @@ local del = vim.keymap.del
 -- NOTE: Deleting 's' so leap.nvim can use it
 -- del('n', 's')
 
+-- NOTE: Deleting 'q' so surround can use it
+map('n', 'q', '<Nop>', { desc = 'Disable macro recording' })
+
 -- NOTE: Inserting empty lines
 
 map('n', 'm', 'o<Esc>', { noremap = true, silent = true })
@@ -49,9 +52,9 @@ map('n', '<C-x>', '<C-v>', { desc = 'Visual-Block Mode' })
 
 -- NOTE: Vim-visual-multiline
 
-map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '', noremap = true })
+map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' }) -- NOTE: Removed detrimental noremap = true
 
-map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = '', noremap = true })
+map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add Cursor down' }) -- NOTE: Removed detrimental noremap = true
 
 -- NOTE: Overriding nvim default keymaps
 
@@ -67,3 +70,10 @@ end, { desc = 'Insert Template (currentBuf)' })
 -- NOTE: Telescope
 
 map('n', '<leader>st', '<CMD>Telescope find_template<CR>', { desc = 'Telescope templates' })
+
+-- NOTE: VimWiki
+
+-- FIX: Make these keymaps be prioritized over VimWiki internal mappings
+
+-- map('n', '<leader>w<leader>m', '<Plug>(VimwikiTabMakeDiaryNote)', { desc = 'Remap TabMakeDiaryNote -> MakeTomorrowNote' })
+-- map('n', '<leader>w<leader>t', '<Plug>(VimwikiMakeTomorrowDiaryNote)', { desc = 'Remap MakeTomorrowNote -> TabMakeDiaryNote' })

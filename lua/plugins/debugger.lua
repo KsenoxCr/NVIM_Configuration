@@ -106,6 +106,8 @@ return {
         'delve',
         'codelldb',
         'netcoredbg',
+        'PowerShellEditorServices',
+        'bashdb',
       },
     }
 

@@ -215,6 +215,7 @@ return {
         },
       },
       intelephense = {},
+      bashls = {},
 
       -- gopls = {},
       -- pyright = {},
@@ -270,6 +271,7 @@ return {
       'intelephense',
       'powershell-editor-services',
       'markdownlint',
+      'bash-language-server',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
