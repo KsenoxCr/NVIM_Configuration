@@ -1,3 +1,3 @@
 return {
-  'vim-fern-git-status',
+  -- 'vim-fern-git-status',
 }

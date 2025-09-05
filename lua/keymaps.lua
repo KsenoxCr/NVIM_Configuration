@@ -1,6 +1,8 @@
 local map = vim.keymap.set
 local del = vim.keymap.del
 
+-- TODO: Replace <leader>p (Lazy) with <leader>P
+
 -- NOTE: Deleting 's' so leap.nvim can use it
 -- del('n', 's')
 
@@ -49,6 +51,7 @@ map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
 -- NOTE: Remapping visual-block mode
 
 map('n', '<C-x>', '<C-v>', { desc = 'Visual-Block Mode' })
+map('n', 'V', '<C-v>', { desc = 'Visual-Block Mode' })
 
 -- NOTE: Vim-visual-multiline
 
@@ -56,10 +59,73 @@ map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' }) -- NOTE: Removed 
 
 map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add Cursor down' }) -- NOTE: Removed detrimental noremap = true
 
--- NOTE: Overriding nvim default keymaps
+-- NOTE: Disable upper & lowercasing keymap for Visual-Block and Visual-Line modes
 
-map('x', 'u', '<Nop>')
-map('n', '.', '<Nop>')
+map('x', 'u', function()
+  local mode = vim.fn.mode()
+  if mode == '\22' or mode == 'V' then
+    return '<Nop>'
+  else
+    return 'u'
+  end
+end, { expr = true, desc = 'Selection to lowercase' })
+
+map('x', 'U', function()
+  local mode = vim.fn.mode()
+  if mode == '\22' or mode == 'V' then
+    return '<Nop>'
+  else
+    return 'U'
+  end
+end, { expr = true, desc = 'Selection to UPPERCASE' })
+
+-- map('n', '.', '<Nop>')
+
+-- NOTE: fern
+
+map('n', '<leader>ec', function()
+  vim.cmd 'Fern %:h'
+end, { noremap = true, silent = true, desc = 'Explorer (CWD)' })
+
+map('n', '<leader>ew', function()
+  vim.cmd('Fern ' .. vim.g.workpath)
+end, { noremap = true, silent = true, desc = 'Explorer (Work)' })
+
+map('n', '<leader>ep', function()
+  vim.cmd('Fern ' .. vim.g.poshmodulepath)
+end, { noremap = true, silent = true, desc = 'Explorer (Posh Modules)' })
+
+map('n', '<leader>eP', function()
+  vim.cmd('Fern ' .. vim.g.profilepath)
+end, { noremap = true, silent = true, desc = 'Explorer (Profiles)' })
+
+map('n', '<leader>eg', function()
+  vim.cmd('Fern ' .. vim.g.godsplan)
+end, { noremap = true, silent = true, desc = 'Explorer (Gods Plan)' })
+
+map('n', '<leader>ea', function()
+  vim.cmd('Fern ' .. vim.g.ahkpath)
+end, { noremap = true, silent = true, desc = 'Explorer (AutoHotKey)' })
+
+map('n', '<leader>en', function()
+  vim.cmd('Fern ' .. vim.fn.stdpath 'config' .. '/lua')
+end, { noremap = true, silent = true, desc = 'Explorer (Neovim config files)' })
+
+map('n', '<leader>ed', function()
+  vim.cmd('Fern ' .. vim.g.dotnetpath)
+end, { noremap = true, silent = true, desc = 'Explorer (Dotnet Projects)' })
+
+map('n', '<leader>eD', function()
+  vim.cmd('Fern ' .. vim.fn.stdpath 'data')
+end, { noremap = true, silent = true, desc = 'Explorer (Neovim data files)' })
+
+map('n', '<leader>E', function()
+  vim.cmd('Fern ' .. vim.g.workpath .. ' -reveal=%')
+end, { noremap = true, silent = true, desc = 'Explorer (CWD)' })
+
+map('n', '<leader>es', function()
+  vim.cmd('Fern ' .. vim.g.school)
+end, { noremap = true, silent = true, desc = 'Explorer (School Directory)' })
 
 -- NOTE: Template
 

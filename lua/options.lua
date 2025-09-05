@@ -5,11 +5,37 @@ vim.env.LANG = 'en_US.UTF-8'
 -- NOTE: GLOBALS
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.global_workpath = '~/Work'
-vim.g.global_templatepath = vim.g.global_workpath .. '/templates'
+vim.g.workpath = '~/Work'
+vim.g.templatepath = vim.g.workpath .. '/templates'
+vim.g.poshmodulepath = vim.g.workpath .. '/Scripts/Powershell/Modules'
+vim.g.profilepath = vim.g.workpath .. '/ShellProfiles'
+vim.g.ahkpath = vim.g.workpath .. '/Scripts/AutoHotKey'
+vim.g.godsplan = vim.g.workpath .. '/Gods_Plan'
+vim.g.dotnetpath = vim.g.workpath .. '/DotnetProjects'
+vim.g.school = vim.g.workpath .. '/school'
+
+if jit.os == 'Windows' then
+  vim.g.toolspath = 'C:/Tools'
+elseif jit.os == 'Linux' then
+  vim.g.toolspath = '/Tools' -- TODO: Change to correct path
+end
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+
+-- NOTE: Filetype extensions
+
+vim.filetype.add {
+  -- extension = {
+  --   ps1 = 'powershell',
+  --   psm1 = 'powershell',
+  --   psd1 = 'powershell',
+  -- },
+  extension = {
+    psm1 = 'ps1',
+    psd1 = 'ps1',
+  },
+}
 
 -- NOTE: OS-Agnostic vimwiki directory
 

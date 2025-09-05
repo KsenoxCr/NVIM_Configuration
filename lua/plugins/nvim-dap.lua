@@ -37,6 +37,7 @@ return {
       '<S-F5>',
       function()
         require('dap').terminate()
+        require('dapui').close()
       end,
       desc = 'Debug: Stop',
     },
@@ -57,7 +58,7 @@ return {
     {
       '<F3>',
       function()
-        require('dap').step_out()()
+        require('dap').step_out()
       end,
       desc = 'Debug: Step Out',
     },
@@ -144,6 +145,49 @@ return {
       },
     }
 
+    -- EditorServices for Powershell
+
+    -- dap.adapters.powershell = {
+    --   type = 'executable',
+    --   command = 'pwsh',
+    --   args = {
+    --     '-File',
+    --     'C:/Tools/PowerShellEditorServices/module/PowerShellEditorServices/Start-EditorServices.ps1',
+    --     '-HostName',
+    --     'nvim',
+    --     '-HostProfileId',
+    --     'neovim',
+    --     '-HostVersion',
+    --     '1.0.0',
+    --     '-BundledModulesPath',
+    --     'C:/Tools/PowerShellEditorServices/module',
+    --     '-LogPath',
+    --     'C:/Temp/pses_log',
+    --     '-SessionDetailsPath',
+    --     'C:/Temp/Session.json',
+    --     '-LogLevel',
+    --     'Diagnostic',
+    --     '-Stdio',
+    --   },
+    -- }
+
+    -- Configuration for Powershell
+    -- dap.configurations.ps1 = {
+    --   {
+    --     type = 'powershell',
+    --     request = 'launch',
+    --     name = 'Launch Powershell Script',
+    --     script = '${file}',
+    --     cwd = '${workspaceFolder}',
+    --     stopOnEntry = true,
+    --   },
+    --   -- TODO: Config for launching function under caret
+    -- }
+
+    -- dap.configurations.powershell = dap.configurations.ps1
+    dap.adapters.psm1 = dap.configurations.ps1
+    dap.configurations.psm1 = dap.configurations.ps1
+
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
@@ -184,12 +228,12 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
-    require('dap-go').setup {
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
-      },
-    }
+    -- require('dap-go').setup {
+    --   delve = {
+    --     -- On Windows delve must be run attached or it crashes.
+    --     -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
+    --     detached = vim.fn.has 'win32' == 0,
+    --   },
+    -- }
   end,
 }

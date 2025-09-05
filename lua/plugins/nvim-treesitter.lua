@@ -33,6 +33,7 @@ return { -- Highlight, edit, and navigate code
       'vim',
       'vimdoc',
     },
+
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {
@@ -44,6 +45,9 @@ return { -- Highlight, edit, and navigate code
 
       indent = { enable = true, disable = { 'ruby' } },
     },
+    -- matchup = {
+    --   enable = true,
+    -- }
     -- playground = {
     --   enable = true,
     --   updatetime = 25, -- Debounce time for updates (ms)
@@ -56,6 +60,24 @@ return { -- Highlight, edit, and navigate code
     --   vim.cmd 'TSUpdate '
     -- end,
   },
+  config = function(_, opts)
+    require('nvim-treesitter.configs').setup(opts)
+
+    local parsers = require 'nvim-treesitter.parsers'
+
+    local posh_fts = { 'ps1', 'psm1', 'psd1' }
+
+    posh_fts.contains = require('utils').contains
+
+    local og_ft_to_lang = parsers.ft_to_lang
+
+    parsers.ft_to_lang = function(ft)
+      if posh_fts:contains(ft) then
+        return 'powershell'
+      end
+      return og_ft_to_lang(ft)
+    end
+  end,
 }
 -- There are additional nvim-treesitter modules that you can use to interact
 -- with nvim-treesitter. You should go explore a few and see what interests you:

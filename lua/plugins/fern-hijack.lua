@@ -1,3 +1,3 @@
 return {
-  'lambdalisue/fern-hijack.vim',
+  -- 'lambdalisue/fern-hijack.vim',
 }

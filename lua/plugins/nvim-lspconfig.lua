@@ -43,6 +43,45 @@ return {
     -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
     -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+    local ahklsp_installed = require('utils').exists 'C:/Tools/vscode-autohotkey2-lsp'
+
+    if ahklsp_installed then
+      local function custom_attach(client, bufnr)
+        require('lsp_signature').on_attach {
+          bind = true,
+          use_lspsaga = false,
+          floating_window = true,
+          fix_pos = true,
+          hint_enable = true,
+          hi_parameter = 'Search',
+          handler_opts = { 'double' },
+        }
+      end
+
+      local ahk2_configs = {
+        autostart = true,
+        cmd = {
+          'node',
+          vim.fn.expand(vim.g.toolspath .. '/vscode-autohotkey2-lsp/server/src/server.ts'),
+          '--stdio',
+        },
+        filetypes = { 'ahk', 'autohotkey', 'ah2' },
+        init_options = {
+          locale = 'en-us',
+          InterpreterPath = 'C:/Program Files/AutoHotkey/v2/AutoHotkey.exe',
+          -- Same as initializationOptions for Sublime Text4, convert json literal to lua dictionary literal
+        },
+        single_file_support = true,
+        flags = { debounce_text_changes = 500 },
+        -- capabilities = capabilities,
+        on_attach = custom_attach,
+      }
+      local configs = require 'lspconfig.configs'
+      configs['ahk2'] = { default_config = ahk2_configs }
+      local nvim_lsp = require 'lspconfig'
+      nvim_lsp.ahk2.setup {}
+    end
+
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -203,6 +242,7 @@ return {
       html = {},
       cssls = {},
       ts_ls = {},
+      vimls = {},
       emmet_ls = {
         filetypes = {
           'html',
@@ -237,6 +277,9 @@ return {
           Lua = {
             completion = {
               callSnippet = 'Replace',
+            },
+            type = {
+              strict = true,
             },
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },

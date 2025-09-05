@@ -4,10 +4,16 @@
 --
 -- vim.api.nvim_create_user_command('PopFern', fern_popup.popup, { desc = 'Open Fern in pop up window' })
 
+-- NOTE: Copy messages into clipboard
+
+vim.api.nvim_create_user_command('ClipMessage', function()
+  vim.cmd ':redir @+ | messages | redir END'
+end, { desc = 'Copy messages to clipboard' })
+
 -- NOTE: Insert Template into current buffer
 
 vim.api.nvim_create_user_command('InsertTemplate', function(opts)
-  vim.cmd(':read ' .. vim.g.global_templatepath .. '/' .. opts.args)
+  vim.cmd(':read ' .. vim.g.templatepath .. '/' .. opts.args)
 end, { nargs = 1, desc = 'Insert Template into current buffer' })
 
 -- NOTE: Test <Plug> keymaps existence
@@ -19,3 +25,19 @@ vim.api.nvim_create_user_command('PlugMappingExists', function(opts)
     print('❌ <Plug>(' .. opts.args .. ') not found')
   end
 end, { nargs = 1, desc = 'Test wheter <Plug> exists or not' })
+
+-- NOTE: Treesitter
+
+vim.api.nvim_create_user_command('TSInstallInfoList', function()
+  print(vim.inspect(require('nvim-treesitter.info').installed_parsers()))
+end, { desc = 'Copy messages to clipboard' })
+
+-- NOTE: DAP
+
+vim.api.nvim_create_user_command('DapViewConfigs', function()
+  print(vim.inspect(require('dap').configurations))
+end, { desc = 'View DAP configurations' })
+
+vim.api.nvim_create_user_command('DapViewAdapters', function()
+  print(vim.inspect(require('dap').adapters))
+end, { desc = 'View DAP adapters' })
