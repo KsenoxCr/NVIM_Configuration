@@ -3,6 +3,13 @@
 vim.env.LANG = 'en_US.UTF-8'
 
 -- NOTE: GLOBALS
+
+if jit.os == 'Windows' then
+  vim.g.appdata = os.getenv('LOCALAPPDATA')
+elseif jit.os == 'Linux' then
+  vim.g.appdata = os.getenv('HOME')
+end
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.workpath = '~/Work'
@@ -72,9 +79,9 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 
 -- Set tabs to use 4 spaces instead of 8
-vim.o.tabstop = 4 -- Number of spaces a tab counts for
-vim.o.softtabstop = 4 -- How many spaces Neovim uses for soft tabs
-vim.o.shiftwidth = 4 -- Number of spaces to use for auto-indentation
+vim.o.tabstop = 4      -- Number of spaces a tab counts for
+vim.o.softtabstop = 4  -- How many spaces Neovim uses for soft tabs
+vim.o.shiftwidth = 4   -- Number of spaces to use for auto-indentation
 vim.o.expandtab = true -- Convert tabs to spaces
 
 -- Don't show the mode, since it's already in the status line
@@ -131,5 +138,5 @@ vim.opt.scrolloff = 10
 vim.g.vimtex_view_method = 'general' --redundant because general is default value
 vim.g.vimtex_view_general_viewer = 'C:\\Users\\kseno\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe'
 vim.g.vimtex_compiler_method = 'latexmk'
-vim.g.vimtex_quickfix_mode = 0 -- 0: disabled, 1: errors, 2: errors and warnings
+vim.g.vimtex_quickfix_mode = 0    -- 0: disabled, 1: errors, 2: errors and warnings
 vim.g.vimtex_mappings_enabled = 1 -- Uses default keymaps (<leader>l...)

@@ -1,12 +1,19 @@
-package.path = package.path .. ';' .. os.getenv 'LOCALAPPDATA' .. '\\nvim-data\\lazy\\nvim-treesitter\\lua\\?.lua'
-local status_ok, treesitter_install = pcall(require, 'nvim-treesitter.install')
-if not status_ok then
-  print 'Treesitter status: not ok'
-  print('Error:', treesitter_install)
-  return {}
-end
+-- os_name = jit.os
 
-treesitter_install.compilers = { 'clang' }
+-- if os_name == 'Windows' then
+--   package.path = package.path .. ';' .. vim.g.appdata .. '\\nvim-data\\lazy\\nvim-treesitter\\lua\\?.lua'
+-- elseif os_name == 'Linux' then
+--   package.path = package.path .. ';' .. vim.g.appdata .. '/nvim/lazy/nvim-treesitter/lua/?.lua'
+-- end
+--
+-- local status_ok, treesitter_install = pcall(require, 'nvim-treesitter.install')
+-- if not status_ok then
+--   print 'Treesitter status: not ok'
+--   print('Error:', treesitter_install)
+--   return {}
+-- end
+
+-- treesitter_install.compilers = { 'clang' }
 
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
@@ -61,6 +68,23 @@ return { -- Highlight, edit, and navigate code
     -- end,
   },
   config = function(_, opts)
+    os_name = jit.os
+
+    if os_name == 'Windows' then
+      package.path = package.path .. ';' .. vim.g.appdata .. '\\nvim-data\\lazy\\nvim-treesitter\\lua\\?.lua'
+    elseif os_name == 'Linux' then
+      package.path = package.path .. ';' .. vim.g.appdata .. '/nvim/lazy/nvim-treesitter/lua/?.lua'
+    end
+
+    local status_ok, treesitter_install = pcall(require, 'nvim-treesitter.install')
+    if not status_ok then
+      print 'Treesitter status: not ok'
+      print('Error:', treesitter_install)
+      return {}
+    end
+
+    treesitter_install.compilers = { 'clang' }
+
     require('nvim-treesitter.configs').setup(opts)
 
     local parsers = require 'nvim-treesitter.parsers'

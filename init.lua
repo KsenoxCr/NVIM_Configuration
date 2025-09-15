@@ -9,7 +9,7 @@ local os_name = jit.os
 if os_name == 'Windows' then
   package.path = package.path .. ';' .. os.getenv 'LOCALAPPDATA' .. '\\nvim-data\\?.lua'
 elseif os_name == 'Linux' then
-  package.path = package.path .. ';' .. os.getenv 'XDG_DATA_HOME' .. '/nvim/?.lua' or package.path .. ';' .. os.getenv 'HOME' .. '.local/share/nvim/?.lua'
+  package.path = package.path .. ';' .. '~/.config/nvim/?.lua'
 end
 
 vim.opt.encoding = 'utf-8' -- Sets the internal character encoding.
