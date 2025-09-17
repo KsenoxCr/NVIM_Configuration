@@ -12,7 +12,7 @@ elseif os_name == 'Linux' then
   package.path = package.path .. ';' .. '~/.config/nvim/?.lua'
 end
 
-vim.opt.encoding = 'utf-8' -- Sets the internal character encoding.
+vim.opt.encoding = 'utf-8'     -- Sets the internal character encoding.
 vim.opt.fileencoding = 'utf-8' -- Sets the encoding for files
 
 require 'options'

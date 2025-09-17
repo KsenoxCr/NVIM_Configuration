@@ -55,7 +55,7 @@ map('n', 'V', '<C-v>', { desc = 'Visual-Block Mode' })
 
 -- NOTE: Vim-visual-multiline
 
-map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' }) -- NOTE: Removed detrimental noremap = true
+map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' })              -- NOTE: Removed detrimental noremap = true
 
 map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add Cursor down' }) -- NOTE: Removed detrimental noremap = true
 
@@ -126,6 +126,10 @@ end, { noremap = true, silent = true, desc = 'Explorer (CWD)' })
 map('n', '<leader>es', function()
   vim.cmd('Fern ' .. vim.g.school)
 end, { noremap = true, silent = true, desc = 'Explorer (School Directory)' })
+
+map('n', '<leader>et', function()
+  vim.cmd('Fern ' .. vim.g.templatepath)
+end, { noremap = true, silent = true, desc = 'Explorer (Templates)' })
 
 -- NOTE: Template
 
