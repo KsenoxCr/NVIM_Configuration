@@ -95,7 +95,11 @@ end, { expr = true, desc = 'Selection to UPPERCASE' })
 
 -- map('n', '.', '<Nop>')
 
--- NOTE: fern
+-- NOTE: Fern
+
+map('n', '<leader>er', function()
+  vim.cmd('Fern ' .. vim.g.root)
+end, { noremap = true, silent = true, desc = 'Explorer (Home)' })
 
 map('n', '<leader>eh', function()
   vim.cmd('Fern ' .. (os.getenv 'HOME'))
@@ -189,13 +193,27 @@ end, { desc = 'Insert [T]emplate (currentBuf)' })
 
 -- NOTE: Opening common files
 
-map('n', '<leader>ft', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Tech_Problems.md<CR>', { desc = 'Open [T]ech Problems' })
-map('n', '<leader>fp', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Paths.md<CR>', { desc = 'Open [P]aths' })
-map('n', '<leader>fr', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Brain_Ram.md<CR>', { desc = 'Open Brain [R]AM' })
-map('n', '<leader>fd', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Documentations.md<CR>', { desc = 'Open [D]ocumentations' })
-map('n', '<leader>fw', function()
-  local dir = [[C:\Users\aksum\Work\Notes\Gods_Plan\weeks]]
+local os_name = jit.os
 
+if os_name == 'Windows' then
+  vim.commons.tech_problems = 'C:/Users/aksum/OneDrive/Gods_Plan/Tech_Problems.md'
+  vim.commons.brain_ram = 'C:/Users/aksum/OneDrive/Gods_Plan/Brain_Ram.md'
+  vim.commons.paths = 'C:/Users/aksum/OneDrive/Gods_Plan/Paths.md'
+  vim.commons.documents = 'C:/Users/aksum/OneDrive/Gods_Plan/Documentations.md'
+  vim.commons.weeks = 'C:/Users/aksum/OneDrive/Gods_Plan/weeks'
+elseif os_name == 'Linux' then
+  vim.commons.tech_problems = '~/Gods_Plan/Tech_Problems.md'
+  vim.commons.brain_ram = '~/Gods_Plan/Brain_Ram.md'
+  vim.commons.paths = '~/Gods_Plan/Paths.md'
+  vim.commons.documents = '~/Gods_Plan/Documentations.md'
+  vim.commons.weeks = '~/Gods_Plan/weeks'
+end
+
+map('n', '<leader>ft', ':e ' .. vim.commons.tech_problems .. '<CR>', { desc = 'Open [T]ech Problems' })
+map('n', '<leader>fp', ':e ' .. vim.commons.paths .. '<CR>', { desc = 'Open [P]aths' })
+map('n', '<leader>fr', ':e ' .. vim.commons.brain_ram .. '<CR>', { desc = 'Open Brain [R]AM' })
+map('n', '<leader>fd', ':e ' .. vim.commons.documents .. '<CR>', { desc = 'Open [D]ocumentations' })
+map('n', '<leader>fw', function()
   vim.api.nvim_create_autocmd('BufEnter', {
     once = true,
     callback = function()
@@ -206,7 +224,7 @@ map('n', '<leader>fw', function()
     end,
   })
 
-  vim.cmd('e ' .. dir)
+  vim.cmd('e ' .. vim.commons.weeks)
 end, { desc = 'Open Current Week (fern)' })
 
 -- NOTE: Telescope
