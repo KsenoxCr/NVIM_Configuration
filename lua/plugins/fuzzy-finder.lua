@@ -101,6 +101,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
       }
     end, { desc = '[S]earch [/] in Open Files' })
 
+    vim.keymap.set('n', '<leader>sc', function()
+      builtin.find_files()
+    end, { desc = '[S]earch in [C]WD' })
+
+    vim.keymap.set('n', '<leader>sS', function()
+      builtin.find_files { cwd = vim.g.swap }
+    end, { desc = '[S]earch in [S]wap Files' })
+
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
@@ -148,6 +156,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>gc', function()
       builtin.live_grep()
     end, { desc = '[G]rep CWD' })
+
+    vim.keymap.set('n', '<leader>gC', function()
+      builtin.live_grep { cwd = vim.g.root }
+    end, { desc = '[G]rep C:\\' })
 
     vim.keymap.set('n', '<leader>gw', function()
       builtin.live_grep { cwd = vim.g.workpath }

@@ -4,22 +4,42 @@ vim.env.LANG = 'en_US.UTF-8'
 
 -- NOTE: GLOBALS
 
-if jit.os == 'Windows' then
-  vim.g.appdata = os.getenv('LOCALAPPDATA')
-elseif jit.os == 'Linux' then
-  vim.g.appdata = os.getenv('HOME')
+os_type = jit.os
+
+if os_type == 'Windows' then
+  vim.g.appdata = os.getenv 'LOCALAPPDATA'
+  vim.g.root = 'C:/'
+elseif os_type == 'Linux' then
+  vim.g.appdata = os.getenv 'HOME'
+  vim.g.root = '/'
+end
+
+-- NOTE: OS-Agnostic vimwiki directory
+
+local os_name = jit.os
+local wikiDir
+
+if os_name == 'Windows' then
+  wikiDir = os.getenv 'USERPROFILE' .. '/OneDrive/Tiedostot/Gods_Plan/'
+elseif os_name == 'Linux' then
+  wikiDir = os.getenv 'HOME' .. '/Work/Notes/Gods_Plan'
 end
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.workpath = '~/Work'
-vim.g.templatepath = vim.g.workpath .. '/templates'
-vim.g.poshmodulepath = vim.g.workpath .. '/Scripts/Powershell/Modules'
-vim.g.profilepath = vim.g.workpath .. '/ShellProfiles'
-vim.g.ahkpath = vim.g.workpath .. '/Scripts/AutoHotKey'
-vim.g.godsplan = vim.g.workpath .. '/Gods_Plan'
-vim.g.dotnetpath = vim.g.workpath .. '/DotnetProjects'
+vim.g.templatepath = vim.g.workpath .. '/Notes/templates'
+vim.g.posh = vim.g.workpath .. '/Scripting/Powershell'
+vim.g.n8n = vim.g.workpath .. '/Scripting/n8n'
+vim.g.profilepath = vim.g.workpath .. '/Scripting/ShellProfiles'
+vim.g.ahkpath = vim.g.workpath .. '/Scripting/AutoHotKey'
+vim.g.godsplan = wikiDir
+vim.g.dotnetpath = vim.g.workpath .. '/Programming/DotnetProjects'
 vim.g.school = vim.g.workpath .. '/school'
+vim.g.programming = vim.g.workpath .. '/Programming'
+vim.g.scripting = vim.g.workpath .. '/Scripting'
+vim.g.weeks = vim.g.workpath .. '/Notes/Gods_Plan/weeks'
+vim.g.swap = vim.fn.stdpath 'data' .. '/swap'
 
 if jit.os == 'Windows' then
   vim.g.toolspath = 'C:/Tools'
@@ -43,17 +63,6 @@ vim.filetype.add {
     psd1 = 'ps1',
   },
 }
-
--- NOTE: OS-Agnostic vimwiki directory
-
-local os_name = jit.os
-local wikiDir
-
-if os_name == 'Windows' then
-  wikiDir = os.getenv 'USERPROFILE' .. '\\work\\Gods_Plan\\'
-elseif os_name == 'Linux' then
-  wikiDir = os.getenv 'HOME' .. '/Work/Gods_Plan'
-end
 
 if require('utils').is_dir(wikiDir) then
   vim.g.vimwiki_list = {
@@ -79,9 +88,9 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 
 -- Set tabs to use 4 spaces instead of 8
-vim.o.tabstop = 4      -- Number of spaces a tab counts for
-vim.o.softtabstop = 4  -- How many spaces Neovim uses for soft tabs
-vim.o.shiftwidth = 4   -- Number of spaces to use for auto-indentation
+vim.o.tabstop = 4 -- Number of spaces a tab counts for
+vim.o.softtabstop = 4 -- How many spaces Neovim uses for soft tabs
+vim.o.shiftwidth = 4 -- Number of spaces to use for auto-indentation
 vim.o.expandtab = true -- Convert tabs to spaces
 
 -- Don't show the mode, since it's already in the status line
@@ -134,9 +143,10 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- NOTE: VimTex
+-- TODO: Made OS-Agnostic
 
 vim.g.vimtex_view_method = 'general' --redundant because general is default value
 vim.g.vimtex_view_general_viewer = 'C:\\Users\\kseno\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe'
 vim.g.vimtex_compiler_method = 'latexmk'
-vim.g.vimtex_quickfix_mode = 0    -- 0: disabled, 1: errors, 2: errors and warnings
+vim.g.vimtex_quickfix_mode = 0 -- 0: disabled, 1: errors, 2: errors and warnings
 vim.g.vimtex_mappings_enabled = 1 -- Uses default keymaps (<leader>l...)

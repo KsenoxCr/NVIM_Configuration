@@ -7,7 +7,20 @@ local del = vim.keymap.del
 -- del('n', 's')
 
 -- NOTE: Deleting 'q' so surround can use it
-map('n', 'q', '<Nop>', { desc = 'Disable macro recording' })
+-- map('n', 'q', '<Nop>', { desc = 'Disable macro recording' })
+
+-- NOTE: Copy Current Buffer's File Into Temp Dir
+
+vim.keymap.set('n', '<leader>cc', function()
+  vim.api.nvim_command 'CopyCurrentFile'
+end, { desc = 'Copy :messages to clipboard' })
+
+-- NOTE: Copying messages into clipboard
+
+vim.keymap.set('n', '<leader>cm', function()
+  local output = vim.api.nvim_exec2('messages', { output = true }).output
+  vim.fn.setreg('+', output)
+end, { desc = 'Copy :messages to clipboard' })
 
 -- NOTE: Inserting empty lines
 
@@ -16,6 +29,7 @@ map('n', 'M', 'O<Esc>', { noremap = true, silent = true })
 
 -- NOTE: Writing to file
 map('n', '<C-s>', ':w<CR>', { desc = 'Write to file', noremap = true, silent = true })
+map('n', '<C-S>', ':w!<CR>', { desc = 'Overwrite', noremap = true, silent = true })
 map('n', '<C-A-s>', ':wall<CR>', { desc = 'Write all', noremap = true, silent = true })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -55,7 +69,7 @@ map('n', 'V', '<C-v>', { desc = 'Visual-Block Mode' })
 
 -- NOTE: Vim-visual-multiline
 
-map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' })              -- NOTE: Removed detrimental noremap = true
+map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' }) -- NOTE: Removed detrimental noremap = true
 
 map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add Cursor down' }) -- NOTE: Removed detrimental noremap = true
 
@@ -91,13 +105,17 @@ map('n', '<leader>ew', function()
   vim.cmd('Fern ' .. vim.g.workpath)
 end, { noremap = true, silent = true, desc = 'Explorer (Work)' })
 
+map('n', '<leader>eW', function()
+  vim.cmd('Fern ' .. vim.g.weeks)
+end, { noremap = true, silent = true, desc = 'Explorer (WeekPlans)' })
+
 map('n', '<leader>ep', function()
-  vim.cmd('Fern ' .. vim.g.poshmodulepath)
-end, { noremap = true, silent = true, desc = 'Explorer (Posh Modules)' })
+  vim.cmd('Fern ' .. vim.g.posh)
+end, { noremap = true, silent = true, desc = 'Explorer (PoSh)' })
 
 map('n', '<leader>eP', function()
-  vim.cmd('Fern ' .. vim.g.profilepath)
-end, { noremap = true, silent = true, desc = 'Explorer (Profiles)' })
+  vim.cmd('Fern ' .. vim.g.programming)
+end, { noremap = true, silent = true, desc = 'Explorer (Programming)' })
 
 map('n', '<leader>eg', function()
   vim.cmd('Fern ' .. vim.g.godsplan)
@@ -127,15 +145,65 @@ map('n', '<leader>es', function()
   vim.cmd('Fern ' .. vim.g.school)
 end, { noremap = true, silent = true, desc = 'Explorer (School Directory)' })
 
+map('n', '<leader>eS', function()
+  vim.cmd('Fern ' .. vim.g.scripting)
+end, { noremap = true, silent = true, desc = 'Explorer (Templates)' })
+
 map('n', '<leader>et', function()
   vim.cmd('Fern ' .. vim.g.templatepath)
 end, { noremap = true, silent = true, desc = 'Explorer (Templates)' })
 
+map('n', '<leader>ef', function()
+  vim.cmd('Fern ' .. vim.g.profilepath)
+end, { noremap = true, silent = true, desc = 'Explorer (Profiles)' })
+
+map('n', '<leader>e8', function()
+  vim.cmd('Fern ' .. vim.g.n8n)
+end, { noremap = true, silent = true, desc = 'Explorer (n8n)' })
+
+map('n', '<leader>e8', function()
+  vim.cmd('Fern ' .. vim.g.n8n)
+end, { noremap = true, silent = true, desc = 'Explorer (n8n)' })
+
+map('n', '<leader>eA', function()
+  vim.cmd('Fern ' .. os.getenv 'LOCALAPPDATA')
+end, { noremap = true, silent = true, desc = 'Explorer (LOCALAPPDATA)' })
+
+map('n', '<leader>eR', function()
+  vim.cmd('Fern ' .. os.getenv 'APPDATA')
+end, { noremap = true, silent = true, desc = 'Explorer (APPDATA)' })
+
+map('n', '<leader>eC', function()
+  vim.cmd('Fern ' .. 'C:\\')
+end, { noremap = true, silent = true, desc = 'Explorer (C:\\)' })
+
 -- NOTE: Template
 
-map('n', '<leader>T', function()
+map('n', '<leader>t', function()
   vim.api.nvim_feedkeys(':InsertTemplate ', 'n', true)
-end, { desc = 'Insert Template (currentBuf)' })
+end, { desc = 'Insert [T]emplate (currentBuf)' })
+
+-- NOTE: Opening common files
+
+map('n', '<leader>ft', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Tech_Problems.md<CR>', { desc = 'Open [T]ech Problems' })
+map('n', '<leader>fp', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Paths.md<CR>', { desc = 'Open [P]aths' })
+map('n', '<leader>fr', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Brain_Ram.md<CR>', { desc = 'Open Brain [R]AM' })
+map('n', '<leader>fd', ':e C:\\Users\\aksum\\Work\\Notes\\Gods_Plan\\Documentations.md<CR>', { desc = 'Open [D]ocumentations' })
+map('n', '<leader>fw', function()
+  local dir = [[C:\Users\aksum\Work\Notes\Gods_Plan\weeks]]
+
+  vim.api.nvim_create_autocmd('BufEnter', {
+    once = true,
+    callback = function()
+      vim.defer_fn(function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('G', true, false, true), 'n', true)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', true)
+      end, 100)
+    end,
+  })
+
+  vim.cmd('e ' .. dir)
+end, { desc = 'Open Current Week (fern)' })
 
 -- NOTE: Telescope
 

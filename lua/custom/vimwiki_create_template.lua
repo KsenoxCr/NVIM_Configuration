@@ -57,7 +57,4 @@ end
 
 function M.CreateTemplate() end
 
-M.ChooseTemplate()
-print 'test'
-
 vim.api.nvim_create_user_command('ChooseTemplate', M.ChooseTemplate(), {})

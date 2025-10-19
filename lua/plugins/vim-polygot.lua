@@ -1,0 +1,38 @@
+return {
+  {
+    'sheerun/vim-polyglot',
+    lazy = false,
+    priority = 1000,
+    init = function()
+      vim.g.polyglot_disabled = {
+        'bash',
+        'c',
+        'c_sharp',
+        'cpp',
+        'css',
+        'devicetree',
+        'diff',
+        'fish',
+        'gitattributes',
+        'gitignore',
+        'html',
+        'javascript',
+        'json',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'php',
+        'powershell',
+        'printf',
+        'query',
+        'toml',
+        'typescript',
+        'vim',
+        'vimdoc',
+        'xml',
+        'yaml',
+      }
+    end,
+  },
+}

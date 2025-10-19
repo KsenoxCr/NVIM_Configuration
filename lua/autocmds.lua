@@ -58,6 +58,13 @@ vim.api.nvim_create_autocmd('BufNewFile', {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.xaml',
+  callback = function()
+    vim.bo.filetype = 'xml'
+  end,
+})
+
 -- NOTE: Fern
 
 vim.api.nvim_create_autocmd('FileType', {

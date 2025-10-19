@@ -1,8 +1,19 @@
--- NOTE: Open Fern in new pop up window (instead of current buffer)
+-- NOTE: Create Copy of Current Buffers file
 
--- local fern_popup = require 'custom.fern-popup'
---
--- vim.api.nvim_create_user_command('PopFern', fern_popup.popup, { desc = 'Open Fern in pop up window' })
+vim.api.nvim_create_user_command('CopyCurrentFile', function()
+  local cur_buf_path = vim.api.nvim_buf_get_name(0)
+
+  if cur_buf_path == '' then
+    print 'No buffer selected'
+    return
+  end
+
+  local temp_dir = 'D:\\Temp\\nvim'
+
+  local cmd = 'copy /Y ' .. cur_buf_path .. ' ' .. temp_dir
+
+  vim.fn.system(cmd)
+end, { desc = "Copy current buffer's file to temp dir" })
 
 -- NOTE: Copy messages into clipboard
 
@@ -11,7 +22,6 @@ vim.api.nvim_create_user_command('ClipMessage', function()
 end, { desc = 'Copy messages to clipboard' })
 
 -- NOTE: Insert Template into current buffer
-
 vim.api.nvim_create_user_command('InsertTemplate', function(opts)
   vim.cmd(':read ' .. vim.g.templatepath .. '/' .. opts.args)
 end, { nargs = 1, desc = 'Insert Template into current buffer' })
