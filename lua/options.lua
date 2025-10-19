@@ -1,29 +1,32 @@
--- NOTE: Environment
-
 vim.env.LANG = 'en_US.UTF-8'
 
--- NOTE: GLOBALS
+local os_name = jit.os
 
-os_type = jit.os
-
-if os_type == 'Windows' then
+if os_name == 'Windows' then
   vim.g.appdata = os.getenv 'LOCALAPPDATA'
   vim.g.root = 'C:/'
-elseif os_type == 'Linux' then
-  vim.g.appdata = os.getenv 'HOME'
+elseif os_name == 'Linux' then
+  vim.g.appdata = os.getenv 'HOME' .. '/share/local'
   vim.g.root = '/'
 end
 
--- NOTE: OS-Agnostic vimwiki directory
+-- NOTE: VimWiki
 
-local os_name = jit.os
 local wikiDir
 
 if os_name == 'Windows' then
   wikiDir = os.getenv 'USERPROFILE' .. '/OneDrive/Tiedostot/Gods_Plan/'
 elseif os_name == 'Linux' then
-  wikiDir = os.getenv 'HOME' .. '/Work/Notes/Gods_Plan'
+  wikiDir = os.getenv 'HOME' .. '/Gods_Plan'
 end
+
+if require('utils').is_dir(wikiDir) then
+  vim.g.vimwiki_list = {
+    { path = wikiDir, syntax = 'markdown', ext = '.md', custom_wiki2html = 'pandoc', links_space_char = '_', list_type = 2 },
+  }
+end
+
+-- NOTE: Globals
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -63,12 +66,6 @@ vim.filetype.add {
     psd1 = 'ps1',
   },
 }
-
-if require('utils').is_dir(wikiDir) then
-  vim.g.vimwiki_list = {
-    { path = wikiDir, syntax = 'markdown', ext = '.md', custom_wiki2html = 'pandoc', links_space_char = '_', list_type = 2 },
-  }
-end
 
 -- NOTE: OPTIONS
 

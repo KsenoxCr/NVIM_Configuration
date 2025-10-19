@@ -97,6 +97,10 @@ end, { expr = true, desc = 'Selection to UPPERCASE' })
 
 -- NOTE: fern
 
+map('n', '<leader>eh', function()
+  vim.cmd('Fern ' .. (os.getenv 'HOME'))
+end, { noremap = true, silent = true, desc = 'Explorer (Home)' })
+
 map('n', '<leader>ec', function()
   vim.cmd 'Fern %:h'
 end, { noremap = true, silent = true, desc = 'Explorer (CWD)' })

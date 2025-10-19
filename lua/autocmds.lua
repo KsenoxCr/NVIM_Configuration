@@ -58,10 +58,21 @@ vim.api.nvim_create_autocmd('BufNewFile', {
   end,
 })
 
+-- xaml -> xml
+
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.xaml',
   callback = function()
     vim.bo.filetype = 'xml'
+  end,
+})
+
+-- conf -> bash
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.conf',
+  callback = function()
+    vim.bo.filetype = 'bash'
   end,
 })
 
