@@ -99,51 +99,51 @@ end, { expr = true, desc = 'Selection to UPPERCASE' })
 
 map('n', '<leader>er', function()
   vim.cmd('Fern ' .. vim.g.root)
-end, { noremap = true, silent = true, desc = 'Explorer (Home)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([R]oot)' })
 
 map('n', '<leader>eh', function()
   vim.cmd('Fern ' .. (os.getenv 'HOME'))
-end, { noremap = true, silent = true, desc = 'Explorer (Home)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([H]ome)' })
 
 map('n', '<leader>ec', function()
   vim.cmd 'Fern %:h'
-end, { noremap = true, silent = true, desc = 'Explorer (CWD)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([C]WD)' })
 
 map('n', '<leader>ew', function()
   vim.cmd('Fern ' .. vim.g.workpath)
-end, { noremap = true, silent = true, desc = 'Explorer (Work)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([W]ork)' })
 
 map('n', '<leader>eW', function()
   vim.cmd('Fern ' .. vim.g.weeks)
-end, { noremap = true, silent = true, desc = 'Explorer (WeekPlans)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([W]eekPlans)' })
 
 map('n', '<leader>ep', function()
   vim.cmd('Fern ' .. vim.g.posh)
-end, { noremap = true, silent = true, desc = 'Explorer (PoSh)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([P]oSh)' })
 
 map('n', '<leader>eP', function()
   vim.cmd('Fern ' .. vim.g.programming)
-end, { noremap = true, silent = true, desc = 'Explorer (Programming)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([P]rogramming)' })
 
 map('n', '<leader>eg', function()
   vim.cmd('Fern ' .. vim.g.godsplan)
-end, { noremap = true, silent = true, desc = 'Explorer (Gods Plan)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([G]ods Plan)' })
 
 map('n', '<leader>ea', function()
   vim.cmd('Fern ' .. vim.g.ahkpath)
-end, { noremap = true, silent = true, desc = 'Explorer (AutoHotKey)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([A]utoHotKey)' })
 
 map('n', '<leader>en', function()
   vim.cmd('Fern ' .. vim.fn.stdpath 'config' .. '/lua')
-end, { noremap = true, silent = true, desc = 'Explorer (Neovim config files)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([N]eovim config files)' })
 
 map('n', '<leader>ed', function()
   vim.cmd('Fern ' .. vim.g.dotnetpath)
-end, { noremap = true, silent = true, desc = 'Explorer (Dotnet Projects)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([D]otnet Projects)' })
 
 map('n', '<leader>eD', function()
   vim.cmd('Fern ' .. vim.fn.stdpath 'data')
-end, { noremap = true, silent = true, desc = 'Explorer (Neovim data files)' })
+end, { noremap = true, silent = true, desc = 'Explorer (Neovim [D]ata files)' })
 
 map('n', '<leader>E', function()
   vim.cmd('Fern ' .. vim.g.workpath .. ' -reveal=%')
@@ -151,31 +151,27 @@ end, { noremap = true, silent = true, desc = 'Explorer (CWD)' })
 
 map('n', '<leader>es', function()
   vim.cmd('Fern ' .. vim.g.school)
-end, { noremap = true, silent = true, desc = 'Explorer (School Directory)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([S]chool Directory)' })
 
 map('n', '<leader>eS', function()
   vim.cmd('Fern ' .. vim.g.scripting)
-end, { noremap = true, silent = true, desc = 'Explorer (Templates)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([S]ripting)' })
 
 map('n', '<leader>et', function()
   vim.cmd('Fern ' .. vim.g.templatepath)
-end, { noremap = true, silent = true, desc = 'Explorer (Templates)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([T]emplates)' })
 
 map('n', '<leader>ef', function()
   vim.cmd('Fern ' .. vim.g.profilepath)
-end, { noremap = true, silent = true, desc = 'Explorer (Profiles)' })
+end, { noremap = true, silent = true, desc = 'Explorer (Pro[f]iles)' })
 
 map('n', '<leader>e8', function()
   vim.cmd('Fern ' .. vim.g.n8n)
-end, { noremap = true, silent = true, desc = 'Explorer (n8n)' })
-
-map('n', '<leader>e8', function()
-  vim.cmd('Fern ' .. vim.g.n8n)
-end, { noremap = true, silent = true, desc = 'Explorer (n8n)' })
+end, { noremap = true, silent = true, desc = 'Explorer (n[8]n)' })
 
 map('n', '<leader>eA', function()
   vim.cmd('Fern ' .. os.getenv 'LOCALAPPDATA')
-end, { noremap = true, silent = true, desc = 'Explorer (LOCALAPPDATA)' })
+end, { noremap = true, silent = true, desc = 'Explorer (LOCAL[A]PPDATA)' })
 
 map('n', '<leader>eR', function()
   vim.cmd('Fern ' .. os.getenv 'APPDATA')
@@ -195,24 +191,12 @@ end, { desc = 'Insert [T]emplate (currentBuf)' })
 
 local os_name = jit.os
 
-if os_name == 'Windows' then
-  vim.commons.tech_problems = 'C:/Users/aksum/OneDrive/Gods_Plan/Tech_Problems.md'
-  vim.commons.brain_ram = 'C:/Users/aksum/OneDrive/Gods_Plan/Brain_Ram.md'
-  vim.commons.paths = 'C:/Users/aksum/OneDrive/Gods_Plan/Paths.md'
-  vim.commons.documents = 'C:/Users/aksum/OneDrive/Gods_Plan/Documentations.md'
-  vim.commons.weeks = 'C:/Users/aksum/OneDrive/Gods_Plan/weeks'
-elseif os_name == 'Linux' then
-  vim.commons.tech_problems = '~/Gods_Plan/Tech_Problems.md'
-  vim.commons.brain_ram = '~/Gods_Plan/Brain_Ram.md'
-  vim.commons.paths = '~/Gods_Plan/Paths.md'
-  vim.commons.documents = '~/Gods_Plan/Documentations.md'
-  vim.commons.weeks = '~/Gods_Plan/weeks'
-end
-
-map('n', '<leader>ft', ':e ' .. vim.commons.tech_problems .. '<CR>', { desc = 'Open [T]ech Problems' })
-map('n', '<leader>fp', ':e ' .. vim.commons.paths .. '<CR>', { desc = 'Open [P]aths' })
-map('n', '<leader>fr', ':e ' .. vim.commons.brain_ram .. '<CR>', { desc = 'Open Brain [R]AM' })
-map('n', '<leader>fd', ':e ' .. vim.commons.documents .. '<CR>', { desc = 'Open [D]ocumentations' })
+map('n', '<leader>fh', ':e ' .. vim.g.hyprconf .. '<CR>', { desc = 'Open [H]yprland config' })
+map('n', '<leader>fk', ':e ' .. vim.g.kittyconf .. '<CR>', { desc = 'Open [K]itty config' })
+map('n', '<leader>ft', ':e ' .. vim.g.tech_problems .. '<CR>', { desc = 'Open [T]ech Problems' })
+map('n', '<leader>fp', ':e ' .. vim.g.paths .. '<CR>', { desc = 'Open [P]aths' })
+map('n', '<leader>fr', ':e ' .. vim.g.brain_ram .. '<CR>', { desc = 'Open Brain [R]AM' })
+map('n', '<leader>fd', ':e ' .. vim.g.documents .. '<CR>', { desc = 'Open [D]ocumentations' })
 map('n', '<leader>fw', function()
   vim.api.nvim_create_autocmd('BufEnter', {
     once = true,
@@ -224,7 +208,7 @@ map('n', '<leader>fw', function()
     end,
   })
 
-  vim.cmd('e ' .. vim.commons.weeks)
+  vim.cmd('e ' .. vim.g.weeks)
 end, { desc = 'Open Current Week (fern)' })
 
 -- NOTE: Telescope

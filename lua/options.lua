@@ -39,15 +39,29 @@ vim.g.ahkpath = vim.g.workpath .. '/Scripting/AutoHotKey'
 vim.g.godsplan = wikiDir
 vim.g.dotnetpath = vim.g.workpath .. '/Programming/DotnetProjects'
 vim.g.school = vim.g.workpath .. '/school'
-vim.g.programming = vim.g.workpath .. '/Programming'
 vim.g.scripting = vim.g.workpath .. '/Scripting'
+vim.g.bash = vim.g.workpath .. '/Scripting/Bash'
 vim.g.weeks = vim.g.workpath .. '/Notes/Gods_Plan/weeks'
 vim.g.swap = vim.fn.stdpath 'data' .. '/swap'
 
 if jit.os == 'Windows' then
+  vim.g.programming = vim.g.workpath .. '/Programming'
+  vim.g.tech_problems = 'C:/Users/aksum/OneDrive/Gods_Plan/Tech_Problems.md'
+  vim.g.brain_ram = 'C:/Users/aksum/OneDrive/Gods_Plan/Brain_Ram.md'
+  vim.g.paths = 'C:/Users/aksum/OneDrive/Gods_Plan/Paths.md'
+  vim.g.documents = 'C:/Users/aksum/OneDrive/Gods_Plan/Documentations.md'
+  vim.g.weeks = 'C:/Users/aksum/OneDrive/Gods_Plan/weeks'
   vim.g.toolspath = 'C:/Tools'
 elseif jit.os == 'Linux' then
-  vim.g.toolspath = '/Tools' -- TODO: Change to correct path
+  vim.g.programming = '~/Programming'
+  vim.g.toolspath = '/usr/share'
+  vim.g.tech_problems = '~/Gods_Plan/Tech_Problems.md'
+  vim.g.brain_ram = '~/Gods_Plan/Brain_Ram.md'
+  vim.g.paths = '~/Gods_Plan/Paths.md'
+  vim.g.documents = '~/Gods_Plan/Documentations.md'
+  vim.g.weeks = '~/Gods_Plan/weeks'
+  vim.g.hyprconf = '~/.config/hypr/hyprland.conf'
+  vim.g.kittyconf = '~/.config/kitty/kitty.conf'
 end
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
