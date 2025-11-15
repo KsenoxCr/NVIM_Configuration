@@ -69,9 +69,13 @@ map('n', 'V', '<C-v>', { desc = 'Visual-Block Mode' })
 
 -- NOTE: Vim-visual-multiline
 
-map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' }) -- NOTE: Removed detrimental noremap = true
+map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' })
 
-map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add Cursor down' }) -- NOTE: Removed detrimental noremap = true
+map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add Cursor down' })
+
+-- NOTE: Disable Next occurence of selection
+
+map('n', '<leader>s', '<Nop>')
 
 -- NOTE: Disable upper & lowercasing keymap for Visual-Block and Visual-Line modes
 
@@ -169,6 +173,10 @@ map('n', '<leader>e8', function()
   vim.cmd('Fern ' .. vim.g.n8n)
 end, { noremap = true, silent = true, desc = 'Explorer (n[8]n)' })
 
+map('n', '<leader>eb', function()
+  vim.cmd('Fern ' .. vim.g.bash)
+end, { noremap = true, silent = true, desc = 'Explorer ([B]ash Scripts)' })
+
 map('n', '<leader>eA', function()
   vim.cmd('Fern ' .. os.getenv 'LOCALAPPDATA')
 end, { noremap = true, silent = true, desc = 'Explorer (LOCAL[A]PPDATA)' })
@@ -191,6 +199,7 @@ end, { desc = 'Insert [T]emplate (currentBuf)' })
 
 local os_name = jit.os
 
+map('n', '<leader>fb', ':e ' .. vim.g.bashrc .. '<CR>', { desc = 'Open [B]ash config' })
 map('n', '<leader>fh', ':e ' .. vim.g.hyprconf .. '<CR>', { desc = 'Open [H]yprland config' })
 map('n', '<leader>fk', ':e ' .. vim.g.kittyconf .. '<CR>', { desc = 'Open [K]itty config' })
 map('n', '<leader>ft', ':e ' .. vim.g.tech_problems .. '<CR>', { desc = 'Open [T]ech Problems' })

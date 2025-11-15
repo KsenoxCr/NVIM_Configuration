@@ -17,7 +17,7 @@ local wikiDir
 if os_name == 'Windows' then
   wikiDir = os.getenv 'USERPROFILE' .. '/OneDrive/Tiedostot/Gods_Plan/'
 elseif os_name == 'Linux' then
-  wikiDir = os.getenv 'HOME' .. '/Gods_Plan'
+  wikiDir = os.getenv 'HOME' .. '/gods_plan'
 end
 
 if require('utils').is_dir(wikiDir) then
@@ -30,19 +30,21 @@ end
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.workpath = '~/Work'
-vim.g.templatepath = vim.g.workpath .. '/Notes/templates'
-vim.g.posh = vim.g.workpath .. '/Scripting/Powershell'
-vim.g.n8n = vim.g.workpath .. '/Scripting/n8n'
-vim.g.profilepath = vim.g.workpath .. '/Scripting/ShellProfiles'
-vim.g.ahkpath = vim.g.workpath .. '/Scripting/AutoHotKey'
+vim.g.workpath = '~/work'
+vim.g.templatepath = vim.g.workpath .. '/templates'
+vim.g.posh = vim.g.workpath .. '/scripting/posh'
+vim.g.bash = vim.g.workpath .. '/scripting/bash'
+vim.g.n8n = vim.g.workpath .. '/scripting/n8n'
+vim.g.profilepath = vim.g.workpath .. '/scripting/shell_profiles'
+vim.g.ahkpath = vim.g.workpath .. '/scripting/ahk'
 vim.g.godsplan = wikiDir
-vim.g.dotnetpath = vim.g.workpath .. '/Programming/DotnetProjects'
+vim.g.dotnetpath = vim.g.workpath .. '/programming/dotnet'
 vim.g.school = vim.g.workpath .. '/school'
-vim.g.scripting = vim.g.workpath .. '/Scripting'
-vim.g.bash = vim.g.workpath .. '/Scripting/Bash'
-vim.g.weeks = vim.g.workpath .. '/Notes/Gods_Plan/weeks'
+vim.g.scripting = vim.g.workpath .. '/scripting'
+vim.g.bash = vim.g.workpath .. '/scripting/bash'
+vim.g.weeks = vim.g.workpath .. '/notes/gods_plan/weeks'
 vim.g.swap = vim.fn.stdpath 'data' .. '/swap'
+vim.g.bashrc = '~/.bashrc'
 
 if jit.os == 'Windows' then
   vim.g.programming = vim.g.workpath .. '/Programming'
@@ -55,11 +57,11 @@ if jit.os == 'Windows' then
 elseif jit.os == 'Linux' then
   vim.g.programming = '~/Programming'
   vim.g.toolspath = '/usr/share'
-  vim.g.tech_problems = '~/Gods_Plan/Tech_Problems.md'
-  vim.g.brain_ram = '~/Gods_Plan/Brain_Ram.md'
-  vim.g.paths = '~/Gods_Plan/Paths.md'
-  vim.g.documents = '~/Gods_Plan/Documentations.md'
-  vim.g.weeks = '~/Gods_Plan/weeks'
+  vim.g.tech_problems = '~/gods_plan/Tech_Problems.md'
+  vim.g.brain_ram = '~/gods_plan/Brain_Ram.md'
+  vim.g.paths = '~/gods_plan/Paths.md'
+  vim.g.documents = '~/gods_plan/Documentations.md'
+  vim.g.weeks = '~/gods_plan/weeks'
   vim.g.hyprconf = '~/.config/hypr/hyprland.conf'
   vim.g.kittyconf = '~/.config/kitty/kitty.conf'
 end
