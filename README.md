@@ -1,1 +1,1 @@
-![Neovim Alpha: Main Menu](./asssets/neovim_alpha.png)
+![Neovim Alpha: Main Menu](./assets/neovim_alpha.png)
