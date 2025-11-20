@@ -30,24 +30,23 @@ end
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.g.workpath = '~/work'
-vim.g.templatepath = vim.g.workpath .. '/templates'
-vim.g.posh = vim.g.workpath .. '/scripting/posh'
-vim.g.bash = vim.g.workpath .. '/scripting/bash'
-vim.g.n8n = vim.g.workpath .. '/scripting/n8n'
-vim.g.profilepath = vim.g.workpath .. '/scripting/shell_profiles'
-vim.g.ahkpath = vim.g.workpath .. '/scripting/ahk'
+vim.g.templatepath = '~/templates'
+vim.g.posh = '/scripting/posh'
+vim.g.bash = '/scripting/bash'
+vim.g.n8n = '/scripting/n8n'
+vim.g.profilepath = '/scripting/shell_profiles'
+vim.g.ahkpath = '/scripting/ahk'
 vim.g.godsplan = wikiDir
-vim.g.dotnetpath = vim.g.workpath .. '/programming/dotnet'
-vim.g.school = vim.g.workpath .. '/school'
-vim.g.scripting = vim.g.workpath .. '/scripting'
-vim.g.bash = vim.g.workpath .. '/scripting/bash'
-vim.g.weeks = vim.g.workpath .. '/notes/gods_plan/weeks'
+vim.g.dotnetpath = '/programming/dotnet'
+vim.g.school = '/school'
+vim.g.scripting = '/scripting'
+vim.g.bash = '/scripting/bash'
+vim.g.weeks = '/notes/gods_plan/weeks'
 vim.g.swap = vim.fn.stdpath 'data' .. '/swap'
 vim.g.bashrc = '~/.bashrc'
 
 if jit.os == 'Windows' then
-  vim.g.programming = vim.g.workpath .. '/Programming'
+  vim.g.programming = '/Programming'
   vim.g.tech_problems = 'C:/Users/aksum/OneDrive/Gods_Plan/Tech_Problems.md'
   vim.g.brain_ram = 'C:/Users/aksum/OneDrive/Gods_Plan/Brain_Ram.md'
   vim.g.paths = 'C:/Users/aksum/OneDrive/Gods_Plan/Paths.md'
@@ -63,7 +62,10 @@ elseif jit.os == 'Linux' then
   vim.g.documents = '~/gods_plan/Documentations.md'
   vim.g.weeks = '~/gods_plan/weeks'
   vim.g.hyprconf = '~/.config/hypr/hyprland.conf'
+  vim.g.swayconf = '~/.config/sway/config'
   vim.g.kittyconf = '~/.config/kitty/kitty.conf'
+  vim.g.waybarconf = '~/.config/waybar/config.jsonc'
+  vim.g.waybarcss = '~/.config/waybar/style.css'
 end
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal

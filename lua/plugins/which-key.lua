@@ -82,6 +82,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>r', group = '[R]ename' },
       { '<leader>s', group = '[S]earch' },
       { '<leader>f', group = 'Open [F]iles' },
+      { '<leader>fW', group = '[W]aybar' },
       { '<leader>g', group = '[G]rep' },
       { '<leader>w', group = '[W]iki' },
       { '<leader>t', group = '[T]oggle' },

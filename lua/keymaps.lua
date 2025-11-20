@@ -201,6 +201,7 @@ local os_name = jit.os
 
 map('n', '<leader>fb', ':e ' .. vim.g.bashrc .. '<CR>', { desc = 'Open [B]ash config' })
 map('n', '<leader>fh', ':e ' .. vim.g.hyprconf .. '<CR>', { desc = 'Open [H]yprland config' })
+map('n', '<leader>fs', ':e ' .. vim.g.swayconf .. '<CR>', { desc = 'Open [S]way config' })
 map('n', '<leader>fk', ':e ' .. vim.g.kittyconf .. '<CR>', { desc = 'Open [K]itty config' })
 map('n', '<leader>ft', ':e ' .. vim.g.tech_problems .. '<CR>', { desc = 'Open [T]ech Problems' })
 map('n', '<leader>fp', ':e ' .. vim.g.paths .. '<CR>', { desc = 'Open [P]aths' })
@@ -219,6 +220,8 @@ map('n', '<leader>fw', function()
 
   vim.cmd('e ' .. vim.g.weeks)
 end, { desc = 'Open Current Week (fern)' })
+map('n', '<leader>fWc', ':e ' .. vim.g.waybarconf .. '<CR>', { desc = 'Open [C]onfig' })
+map('n', '<leader>fWs', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]tylesheet' })
 
 -- NOTE: Telescope
 
