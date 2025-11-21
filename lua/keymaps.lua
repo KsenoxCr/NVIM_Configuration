@@ -119,7 +119,7 @@ end, { noremap = true, silent = true, desc = 'Explorer ([W]ork)' })
 
 map('n', '<leader>eW', function()
   vim.cmd('Fern ' .. vim.g.weeks)
-end, { noremap = true, silent = true, desc = 'Explorer ([W]eekPlans)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([W]eek Plans)' })
 
 map('n', '<leader>ep', function()
   vim.cmd('Fern ' .. vim.g.posh)
@@ -134,12 +134,12 @@ map('n', '<leader>eg', function()
 end, { noremap = true, silent = true, desc = 'Explorer ([G]ods Plan)' })
 
 map('n', '<leader>ea', function()
-  vim.cmd('Fern ' .. vim.g.ahkpath)
-end, { noremap = true, silent = true, desc = 'Explorer ([A]utoHotKey)' })
+  vim.cmd('Fern ' .. vim.g.aiprompts)
+end, { noremap = true, silent = true, desc = 'Explorer ([A]i Prompts)' })
 
 map('n', '<leader>en', function()
-  vim.cmd('Fern ' .. vim.fn.stdpath 'config' .. '/lua')
-end, { noremap = true, silent = true, desc = 'Explorer ([N]eovim config files)' })
+  vim.cmd('Fern ' .. vim.fn.stdpath 'config' .. '/lua/plugins')
+end, { noremap = true, silent = true, desc = 'Explorer ([N]eovim plugins)' })
 
 map('n', '<leader>ed', function()
   vim.cmd('Fern ' .. vim.g.dotnetpath)
@@ -159,7 +159,7 @@ end, { noremap = true, silent = true, desc = 'Explorer ([S]chool Directory)' })
 
 map('n', '<leader>eS', function()
   vim.cmd('Fern ' .. vim.g.scripting)
-end, { noremap = true, silent = true, desc = 'Explorer ([S]ripting)' })
+end, { noremap = true, silent = true, desc = 'Explorer ([S]cripting)' })
 
 map('n', '<leader>et', function()
   vim.cmd('Fern ' .. vim.g.templatepath)
@@ -184,10 +184,6 @@ end, { noremap = true, silent = true, desc = 'Explorer (LOCAL[A]PPDATA)' })
 map('n', '<leader>eR', function()
   vim.cmd('Fern ' .. os.getenv 'APPDATA')
 end, { noremap = true, silent = true, desc = 'Explorer (APPDATA)' })
-
-map('n', '<leader>eC', function()
-  vim.cmd('Fern ' .. 'C:\\')
-end, { noremap = true, silent = true, desc = 'Explorer (C:\\)' })
 
 -- NOTE: Template
 
@@ -226,10 +222,3 @@ map('n', '<leader>fWs', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]ty
 -- NOTE: Telescope
 
 map('n', '<leader>st', '<CMD>Telescope find_template<CR>', { desc = 'Telescope templates' })
-
--- NOTE: VimWiki
-
--- FIX: Make these keymaps be prioritized over VimWiki internal mappings
-
--- map('n', '<leader>w<leader>m', '<Plug>(VimwikiTabMakeDiaryNote)', { desc = 'Remap TabMakeDiaryNote -> MakeTomorrowNote' })
--- map('n', '<leader>w<leader>t', '<Plug>(VimwikiMakeTomorrowDiaryNote)', { desc = 'Remap MakeTomorrowNote -> TabMakeDiaryNote' })
