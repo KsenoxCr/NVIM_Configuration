@@ -11,6 +11,10 @@ local del = vim.keymap.del
 
 -- NOTE: Copy Current Buffer's File Into Temp Dir
 
+vim.keymap.set('n', '<leader>cs', function()
+  vim.api.nvim_command 'ClaudeCode'
+end, { desc = 'Start [C]laude Code' })
+
 vim.keymap.set('n', '<leader>cc', function()
   vim.api.nvim_command 'CopyCurrentFile'
 end, { desc = 'Copy :messages to clipboard' })
