@@ -241,7 +241,7 @@ return {
       texlab = {},
       html = {},
       cssls = {},
-      ts_ls = {},
+      -- ts_ls = {},
       vimls = {},
       emmet_ls = {
         filetypes = {
