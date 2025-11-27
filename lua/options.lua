@@ -36,7 +36,7 @@ elseif os_name == 'Linux' then
   vim.g.maplocalleader = ' '
   vim.g.programming = '~/programming'
   vim.g.templatepath = '~/templates'
-  vim.g.aiprompts = '~/ai_prompts_library'
+  vim.g.aiprompts = '~/ai_prompt_library'
   vim.g.posh = '~/scripting/posh'
   vim.g.bash = '~/scripting/bash'
   vim.g.n8n = '~/scripting/n8n'
