@@ -145,6 +145,24 @@ return {
       },
     }
 
+    dap.adapters.python = {
+      type = 'executable',
+      command = vim.fn.exepath 'python3',
+      args = { '-m', 'debugpy.adapter' },
+    }
+
+    dap.configurations.python = {
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}',
+        pythonPath = function()
+          return vim.fn.exepath 'python3'
+        end,
+      },
+    }
+
     -- EditorServices for Powershell
 
     -- dap.adapters.powershell = {
