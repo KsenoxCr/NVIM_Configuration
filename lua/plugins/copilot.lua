@@ -20,6 +20,10 @@ return {
         },
       },
       panel = { enabled = true },
+      filetypes = {
+        markdown = false,
+        vimwiki = false,
+      },
     }
   end,
 }
