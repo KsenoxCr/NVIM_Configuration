@@ -8,7 +8,7 @@ return {
       -- Terminal window settings
       window = {
         split_ratio = 0.5, -- Percentage of screen for the terminal window (height for horizontal, width for vertical splits)
-        position = 'botright', -- Position of the window: "botright", "topleft", "vertical", "float", etc.
+        position = 'vertical', -- Position of the window: "botright", "topleft", "vertical", "float", etc.
         enter_insert = true, -- Whether to enter insert mode when opening Claude Code
         hide_numbers = false, -- Hide line numbers in the terminal window
         hide_signcolumn = true, -- Hide the sign column in the terminal window
@@ -47,6 +47,9 @@ return {
         -- Conversation management
         continue = '--continue', -- Resume the most recent conversation
         resume = '--resume', -- Display an interactive conversation picker
+        haiku = '--model haiku', -- Enable haiku mode for responses
+        sonnet = '--model sonnet', -- Enable sonnet mode for responses
+        opus = '--opus', -- Enable opus mode for responses
 
         -- Output options
         verbose = '--verbose', -- Enable verbose logging with full turn-by-turn output
@@ -59,6 +62,8 @@ return {
           variants = {
             continue = '<leader>cC', -- Normal mode keymap for Claude Code with continue flag
             verbose = '<leader>cV', -- Normal mode keymap for Claude Code with verbose flag
+            haiku = '<leader>ch', -- Normal mode keymap for Claude Code with haiku flag
+            sonnet = '<leader>cs', -- Normal mode keymap for Claude Code with haiku flag
           },
         },
         window_navigation = true, -- Enable window navigation keymaps (<C-h/j/k/l>)
