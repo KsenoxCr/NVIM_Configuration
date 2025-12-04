@@ -223,6 +223,26 @@ end, { desc = 'Open Current Week (fern)' })
 map('n', '<leader>fWc', ':e ' .. vim.g.waybarconf .. '<CR>', { desc = 'Open [C]onfig' })
 map('n', '<leader>fWs', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]tylesheet' })
 
+-- NOTE: Claude Code Terminal Window
+
+map('n', '<leader>cs', function()
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_open_win(buf, true, { split = 'right', win = 0 })
+  vim.fn.termopen 'claude --model sonnet'
+end, { desc = 'Start Claude Code with Sonnet' })
+
+map('n', '<leader>ch', function()
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_open_win(buf, true, { split = 'right', win = 0 })
+  vim.fn.termopen 'claude --model haiku'
+end, { desc = 'Start Claude Code with Haiku' })
+
+map('n', '<leader>cS', function()
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_open_win(buf, true, { split = 'right', win = 0 })
+  vim.fn.termopen 'claude --continue'
+end, { desc = 'Continue Claude Code with Sonnet' })
+
 -- NOTE: Telescope
 
 map('n', '<leader>st', '<CMD>Telescope find_template<CR>', { desc = 'Telescope templates' })
