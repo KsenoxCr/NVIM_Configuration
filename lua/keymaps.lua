@@ -224,9 +224,9 @@ map('n', '<leader>fWs', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]ty
 
 -- Claude Code Terminal Window
 
-map('n', '<leader>cs', 'ClaudePTerm "--model sonnet"', { desc = 'Claude Sonnet' })
-map('n', '<leader>ch', ':ClaudePTerm --model haiku', { desc = 'Claude Haiku' })
-map('n', '<leader>cS', ':ClaudePTerm "--continue"', { desc = 'Claude Continue' })
+map('n', '<leader>cs', 'ClaudePTerm --model sonnet<CR>', { desc = 'Claude Sonnet' })
+map('n', '<leader>ch', ':ClaudePTerm --model haiku<CR>', { desc = 'Claude Haiku' })
+map('n', '<leader>cS', ':ClaudePTerm --continue<CR>', { desc = 'Claude Continue' })
 
 map('n', '<leader>cS', function()
   local buf = vim.api.nvim_create_buf(false, true)
