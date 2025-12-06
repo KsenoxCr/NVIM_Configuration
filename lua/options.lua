@@ -30,6 +30,8 @@ if os_name == 'Windows' then
   vim.g.weeks = 'C:/Users/aksum/OneDrive/Gods_Plan/weeks'
   vim.g.toolspath = 'C:/Tools'
 elseif os_name == 'Linux' then
+  vim.g.tmuxconf = '~/.tmux.conf'
+  vim.g.tmuxinator = '~/.config/tmuxinator'
   vim.g.appdata = os.getenv 'HOME' .. '/share/local'
   vim.g.root = '/'
   vim.g.mapleader = ' '

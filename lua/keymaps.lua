@@ -3,13 +3,13 @@ local del = vim.keymap.del
 
 -- TODO: Replace <leader>p (Lazy) with <leader>P
 
--- NOTE: Deleting 's' so leap.nvim can use it
+-- Deleting 's' so leap.nvim can use it
 -- del('n', 's')
 
--- NOTE: Deleting 'q' so surround can use it
+-- Deleting 'q' so surround can use it
 -- map('n', 'q', '<Nop>', { desc = 'Disable macro recording' })
 
--- NOTE: Copy Current Buffer's File Into Temp Dir
+-- Copy Current Buffer's File Into Temp Dir
 
 vim.keymap.set('n', '<leader>cs', function()
   vim.api.nvim_command 'ClaudeCode'
@@ -19,19 +19,19 @@ vim.keymap.set('n', '<leader>cc', function()
   vim.api.nvim_command 'CopyCurrentFile'
 end, { desc = 'Copy :messages to clipboard' })
 
--- NOTE: Copying messages into clipboard
+-- Copying messages into clipboard
 
 vim.keymap.set('n', '<leader>cm', function()
   local output = vim.api.nvim_exec2('messages', { output = true }).output
   vim.fn.setreg('+', output)
 end, { desc = 'Copy :messages to clipboard' })
 
--- NOTE: Inserting empty lines
+-- Inserting empty lines
 
 map('n', 'm', 'o<Esc>', { noremap = true, silent = true })
 map('n', 'M', 'O<Esc>', { noremap = true, silent = true })
 
--- NOTE: Writing to file
+-- Writing to file
 map('n', '<C-s>', ':w<CR>', { desc = 'Write to file', noremap = true, silent = true })
 map('n', '<C-S>', ':w!<CR>', { desc = 'Overwrite', noremap = true, silent = true })
 map('n', '<C-A-s>', ':wall<CR>', { desc = 'Write all', noremap = true, silent = true })
@@ -50,7 +50,7 @@ map('n', 'fn', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic messa
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
 --
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- This won't work in all terminal emulators/tmux/etc. Try your own mapping
 
 -- or just use <C-\><C-n> to exit terminal mode
 -- map('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -66,22 +66,22 @@ map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
 
--- NOTE: Remapping visual-block mode
+-- Remapping visual-block mode
 
 map('n', '<C-x>', '<C-v>', { desc = 'Visual-Block Mode' })
 map('n', 'V', '<C-v>', { desc = 'Visual-Block Mode' })
 
--- NOTE: Vim-visual-multiline
+-- Vim-visual-multiline
 
 map('n', '<A-m>', '<Plug>(VM-Add-Cursor-Down)', { desc = '' })
 
 map('n', '<A-,>', '<Plug>(VM-Add-Cursor-Up)', { desc = 'Add Cursor down' })
 
--- NOTE: Disable Next occurence of selection
+-- Disable Next occurence of selection
 
 map('n', '<leader>s', '<Nop>')
 
--- NOTE: Disable upper & lowercasing keymap for Visual-Block and Visual-Line modes
+-- Disable upper & lowercasing keymap for Visual-Block and Visual-Line modes
 
 map('x', 'u', function()
   local mode = vim.fn.mode()
@@ -103,7 +103,7 @@ end, { expr = true, desc = 'Selection to UPPERCASE' })
 
 -- map('n', '.', '<Nop>')
 
--- NOTE: Fern
+-- Fern
 
 map('n', '<leader>er', function()
   vim.cmd('Fern ' .. vim.g.root)
@@ -189,21 +189,20 @@ map('n', '<leader>eR', function()
   vim.cmd('Fern ' .. os.getenv 'APPDATA')
 end, { noremap = true, silent = true, desc = 'Explorer (APPDATA)' })
 
--- NOTE: Template
+-- Template
 
 map('n', '<leader>t', function()
   vim.api.nvim_feedkeys(':InsertTemplate ', 'n', true)
 end, { desc = 'Insert [T]emplate (currentBuf)' })
 
--- NOTE: Opening common files
-
-local os_name = jit.os
+-- Opening common files
 
 map('n', '<leader>fb', ':e ' .. vim.g.bashrc .. '<CR>', { desc = 'Open [B]ash config' })
 map('n', '<leader>fh', ':e ' .. vim.g.hyprconf .. '<CR>', { desc = 'Open [H]yprland config' })
 map('n', '<leader>fs', ':e ' .. vim.g.swayconf .. '<CR>', { desc = 'Open [S]way config' })
+map('n', '<leader>ft', ':e ' .. vim.g.tmuxconf .. '<CR>', { desc = 'Open [T]mux config' })
+map('n', '<leader>fT', ':e ' .. vim.g.tmuxinator .. '<CR>', { desc = 'Open [T]muxinator config dir' })
 map('n', '<leader>fk', ':e ' .. vim.g.kittyconf .. '<CR>', { desc = 'Open [K]itty config' })
-map('n', '<leader>ft', ':e ' .. vim.g.tech_problems .. '<CR>', { desc = 'Open [T]ech Problems' })
 map('n', '<leader>fp', ':e ' .. vim.g.paths .. '<CR>', { desc = 'Open [P]aths' })
 map('n', '<leader>fr', ':e ' .. vim.g.brain_ram .. '<CR>', { desc = 'Open Brain [R]AM' })
 map('n', '<leader>fd', ':e ' .. vim.g.documents .. '<CR>', { desc = 'Open [D]ocumentations' })
@@ -223,19 +222,11 @@ end, { desc = 'Open Current Week (fern)' })
 map('n', '<leader>fWc', ':e ' .. vim.g.waybarconf .. '<CR>', { desc = 'Open [C]onfig' })
 map('n', '<leader>fWs', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]tylesheet' })
 
--- NOTE: Claude Code Terminal Window
+-- Claude Code Terminal Window
 
-map('n', '<leader>cs', function()
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_open_win(buf, true, { split = 'right', win = 0 })
-  vim.fn.termopen 'claude --model sonnet'
-end, { desc = 'Start Claude Code with Sonnet' })
-
-map('n', '<leader>ch', function()
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_open_win(buf, true, { split = 'right', win = 0 })
-  vim.fn.termopen 'claude --model haiku'
-end, { desc = 'Start Claude Code with Haiku' })
+map('n', '<leader>cs', 'ClaudePTerm "--model sonnet"', { desc = 'Claude Sonnet' })
+map('n', '<leader>ch', ':ClaudePTerm --model haiku', { desc = 'Claude Haiku' })
+map('n', '<leader>cS', ':ClaudePTerm "--continue"', { desc = 'Claude Continue' })
 
 map('n', '<leader>cS', function()
   local buf = vim.api.nvim_create_buf(false, true)
@@ -243,6 +234,6 @@ map('n', '<leader>cS', function()
   vim.fn.termopen 'claude --continue'
 end, { desc = 'Continue Claude Code with Sonnet' })
 
--- NOTE: Telescope
+-- Telescope
 
 map('n', '<leader>st', '<CMD>Telescope find_template<CR>', { desc = 'Telescope templates' })
