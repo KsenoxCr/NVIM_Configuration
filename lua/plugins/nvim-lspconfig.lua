@@ -255,6 +255,7 @@ return {
           'powershell-editor-services',
         },
       },
+      tailwindcss = {},
       intelephense = {},
       bashls = {},
 
@@ -314,8 +315,9 @@ return {
       'stylua',
       'html',
       'cssls',
-      -- 'typescript-language-server',
+      'tailwindcss-language-server',
       'emmet_ls',
+      -- 'typescript-language-server',
       'intelephense',
       'powershell-editor-services',
       'markdownlint',
