@@ -32,6 +32,14 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
+      javascript = { 'rustywind' },
+      typescript = { 'rustywind' },
+      javascriptreact = { 'rustywind' },
+      typescriptreact = { 'rustywind' },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --

@@ -6,6 +6,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-telescope/telescope.nvim', -- optional
     'neovim/nvim-lspconfig', -- optional
+    'onsails/lspkind-nvim',
   },
   opts = {}, -- your configuration
 }

@@ -41,6 +41,20 @@ return { -- Autocompletion
     luasnip.config.setup {}
 
     cmp.setup {
+      formatting = {
+        format = function(entry, vim_item)
+          local color_item = require('nvim-highlight-colors').format(entry, { kind = vim_item.kind })
+          vim_item = require('lspkind').cmp_format {
+            mode = 'symbol_text',
+            maxwidth = 50,
+          }(entry, vim_item)
+          if color_item.abbr_hl_group then
+            vim_item.kind_hl_group = color_item.abbr_hl_group
+            vim_item.kind = color_item.abbr
+          end
+          return vim_item
+        end,
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -81,8 +95,8 @@ return { -- Autocompletion
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
-        --  function $name($args)
         --    $body
+        --  function $name($args)
         --  end
         --
         -- <c-l> will move you to the right of each of the expansion locations.

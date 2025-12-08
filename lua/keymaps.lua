@@ -11,10 +11,6 @@ local del = vim.keymap.del
 
 -- Copy Current Buffer's File Into Temp Dir
 
-vim.keymap.set('n', '<leader>cs', function()
-  vim.api.nvim_command 'ClaudeCode'
-end, { desc = 'Start [C]laude Code' })
-
 vim.keymap.set('n', '<leader>cc', function()
   vim.api.nvim_command 'CopyCurrentFile'
 end, { desc = 'Copy :messages to clipboard' })
@@ -224,7 +220,7 @@ map('n', '<leader>fWs', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]ty
 
 -- Claude Code Terminal Window
 
-map('n', '<leader>cs', 'ClaudePTerm --model sonnet<CR>', { desc = 'Claude Sonnet' })
+map('n', '<leader>cs', ':ClaudePTerm --model sonnet<CR>', { desc = 'Claude Sonnet' })
 map('n', '<leader>ch', ':ClaudePTerm --model haiku<CR>', { desc = 'Claude Haiku' })
 map('n', '<leader>cS', ':ClaudePTerm --continue<CR>', { desc = 'Claude Continue' })
 

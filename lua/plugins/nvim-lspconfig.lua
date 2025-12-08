@@ -255,10 +255,10 @@ return {
           'powershell-editor-services',
         },
       },
+      prismals = {},
       tailwindcss = {},
       intelephense = {},
       bashls = {},
-
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
