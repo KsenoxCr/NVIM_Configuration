@@ -289,6 +289,10 @@ return {
       },
     }
 
+    -- require('lspconfig').ts_ls.setup {
+    --   autostart = false,
+    -- }
+
     -- Ensure the servers and tools above are installed
     --
     -- To check the current status of installed tools and/or manually install
@@ -310,7 +314,7 @@ return {
       'stylua',
       'html',
       'cssls',
-      'typescript-language-server',
+      -- 'typescript-language-server',
       'emmet_ls',
       'intelephense',
       'powershell-editor-services',
