@@ -48,6 +48,7 @@ elseif os_name == 'Linux' then
   vim.g.dotnetpath = '~/programming/dotnet'
   vim.g.school = '~/school'
   vim.g.scripting = '~/scripting'
+  vim.g.claudeconf = '~/.config/Claude/claude_desktop_config.json'
   vim.g.bash = '~/scripting/bash'
   vim.g.weeks = '~/gods_plan/weeks'
   vim.g.swap = vim.fn.stdpath 'data' .. '/swap'
