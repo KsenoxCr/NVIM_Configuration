@@ -15,6 +15,12 @@ vim.keymap.set('n', '<leader>cc', function()
   vim.api.nvim_command 'CopyCurrentFile'
 end, { desc = 'Copy :messages to clipboard' })
 
+-- Set cursor incase neoscroll bug hides cursor
+
+vim.keymap.set('n', '<leader>Sc', function()
+  vim.api.nvim_command ':set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
+end, { desc = 'Set visible cursor' })
+
 -- Copying messages into clipboard
 
 vim.keymap.set('n', '<leader>cm', function()
