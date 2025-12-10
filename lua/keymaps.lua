@@ -103,10 +103,6 @@ map('x', 'U', function()
   end
 end, { expr = true, desc = 'Selection to UPPERCASE' })
 
--- map('n', '.', '<Nop>')
-
--- Fern
-
 map('n', '<leader>er', function()
   vim.cmd('Fern ' .. vim.g.root)
 end, { noremap = true, silent = true, desc = 'Explorer ([R]oot)' })
@@ -193,9 +189,19 @@ end, { noremap = true, silent = true, desc = 'Explorer (APPDATA)' })
 
 -- Template
 
-map('n', '<leader>t', function()
+map('n', '<leader>T', function()
   vim.api.nvim_feedkeys(':InsertTemplate ', 'n', true)
 end, { desc = 'Insert [T]emplate (currentBuf)' })
+
+-- TypeScript tools
+
+map('n', '<leader>tfa', ':TSToolsFixAll<CR>', { desc = 'TS: Fix all fixable errors' })
+map('n', '<leader>tia', ':TSToolsAddMissingImports<CR>', { desc = 'TS: Add missing imports' })
+map('n', '<leader>tio', ':TSToolsOrganizeImports<CR>', { desc = 'TS: Organize imports' })
+map('n', '<leader>tir', ':TSToolsRemoveUnusedImports<CR>', { desc = 'TS: Remove unused imports' })
+map('n', '<leader>tr', ':TSToolsRemoveUnused<CR>', { desc = 'TS: Remove unused variables/imports' })
+map('n', '<leader>tfr', ':TSToolsRenameFile<CR>', { desc = 'TS: Rename file' })
+map('n', '<leader>tfR', ':TSToolsFileReferences<CR>', { desc = 'TS: Find file references' })
 
 -- Opening common files
 
@@ -240,3 +246,7 @@ end, { desc = 'Continue Claude Code with Sonnet' })
 -- Telescope
 
 map('n', '<leader>st', '<CMD>Telescope find_template<CR>', { desc = 'Telescope templates' })
+
+-- LSP
+
+vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { noremap = true })
