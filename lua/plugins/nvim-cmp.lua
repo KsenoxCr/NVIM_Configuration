@@ -6,30 +6,18 @@ return { -- Autocompletion
     {
       'L3MON4D3/LuaSnip',
       build = (function()
-        -- Build Step is needed for regex support in snippets.
-        -- This step is not supported in many windows environments.
-        -- Remove the below condition to re-enable on windows.
         if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
           return
         end
         return 'make install_jsregexp'
       end)(),
       dependencies = {
-        -- `friendly-snippets` contains a variety of premade snippets.
-        --    See the README about individual language/framework/plugin snippets:
-        --    https://github.com/rafamadriz/friendly-snippets
-        -- {
-        --   'rafamadriz/friendly-snippets',
-        --   config = function()
-        --     require('luasnip.loaders.from_vscode').lazy_load()
-        --   end,
-        -- },
+        {
+          'rafamadriz/friendly-snippets',
+        },
       },
     },
     'saadparwaiz1/cmp_luasnip',
-    -- Adds other completion capabilities.
-    --  nvim-cmp does not ship with all sources by default. They are split
-    --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -38,23 +26,31 @@ return { -- Autocompletion
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+
     luasnip.config.setup {}
 
-    cmp.setup {
-      formatting = {
-        format = function(entry, vim_item)
-          local color_item = require('nvim-highlight-colors').format(entry, { kind = vim_item.kind })
-          vim_item = require('lspkind').cmp_format {
-            mode = 'symbol_text',
-            maxwidth = 50,
-          }(entry, vim_item)
-          if color_item.abbr_hl_group then
-            vim_item.kind_hl_group = color_item.abbr_hl_group
-            vim_item.kind = color_item.abbr
-          end
-          return vim_item
-        end,
-      },
+    require('luasnip.loaders.from_vscode').lazy_load()
+
+    luasnip.filetype_extend('typescript', { 'javascript' })
+    luasnip.filetype_extend('typescriptreact', { 'javascript' })
+
+    require 'cmp_luasnip'
+
+    cmp.setup { -- TODO: diagnose luasnip typescript issue; then uncomment formatting
+      -- formatting = {
+      --   format = function(entry, vim_item)
+      --     local color_item = require('nvim-highlight-colors').format(entry, { kind = vim_item.kind })
+      --     vim_item = require('lspkind').cmp_format {
+      --       mode = 'symbol_text',
+      --       maxwidth = 50,
+      --     }(entry, vim_item)
+      --     if color_item.abbr_hl_group then
+      --       vim_item.kind_hl_group = color_item.abbr_hl_group
+      --       vim_item.kind = color_item.abbr
+      --     end
+      --     return vim_item
+      --   end,
+      -- },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -116,10 +112,10 @@ return { -- Autocompletion
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
       sources = {
+        { name = 'luasnip' },
         { name = 'copilot' },
         { name = 'lazydev', group_index = 0 },
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
         { name = 'path' },
         { name = 'nvim_lsp_signature_help' },
       },

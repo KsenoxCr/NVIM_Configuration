@@ -250,6 +250,7 @@ return {
           'css',
           'scss',
           'javascript',
+          'typescript',
           'javascriptreact',
           'typescriptreact',
           'powershell-editor-services',

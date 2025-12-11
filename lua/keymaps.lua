@@ -124,8 +124,8 @@ map('n', '<leader>eW', function()
 end, { noremap = true, silent = true, desc = 'Explorer ([W]eek Plans)' })
 
 map('n', '<leader>ep', function()
-  vim.cmd('Fern ' .. vim.g.posh)
-end, { noremap = true, silent = true, desc = 'Explorer ([P]oSh)' })
+  vim.cmd('Fern ' .. vim.g.practice)
+end, { noremap = true, silent = true, desc = 'Explorer ([P]ractice)' })
 
 map('n', '<leader>eP', function()
   vim.cmd('Fern ' .. vim.g.programming)
