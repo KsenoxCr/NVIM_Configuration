@@ -54,6 +54,7 @@ elseif os_name == 'Linux' then
   vim.g.weeks = '~/gods_plan/weeks'
   vim.g.swap = vim.fn.stdpath 'data' .. '/swap'
   vim.g.bashrc = '~/.bashrc'
+  vim.g.zshrc = '~/.zshrc'
   vim.g.toolspath = '/usr/share'
   vim.g.tech_problems = '~/gods_plan/Tech_Problems.md'
   vim.g.brain_ram = '~/gods_plan/Brain_Ram.md'

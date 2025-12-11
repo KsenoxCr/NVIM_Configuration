@@ -206,6 +206,7 @@ map('n', '<leader>tfR', ':TSToolsFileReferences<CR>', { desc = 'TS: Find file re
 -- Opening common files
 
 map('n', '<leader>fb', ':e ' .. vim.g.bashrc .. '<CR>', { desc = 'Open [B]ash config' })
+map('n', '<leader>fz', ':e ' .. vim.g.zshrc .. '<CR>', { desc = 'Open [Z]sh config' })
 map('n', '<leader>fh', ':e ' .. vim.g.hyprconf .. '<CR>', { desc = 'Open [H]yprland config' })
 map('n', '<leader>fs', ':e ' .. vim.g.swayconf .. '<CR>', { desc = 'Open [S]way config' })
 map('n', '<leader>fc', ':e ' .. vim.g.claudeconf .. '<CR>', { desc = 'Open [C]laude config' })
