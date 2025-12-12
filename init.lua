@@ -48,8 +48,6 @@ require('lazy').setup {
   },
 }
 
-require('telescope').load_extension 'find_template'
-
 require 'keymaps'
 require 'configs.init'
 
