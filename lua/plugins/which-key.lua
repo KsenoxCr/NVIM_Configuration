@@ -67,7 +67,7 @@ return { -- Useful plugin to show you pending keybinds.
     },
     -- Document existing key chains
     spec = {
-      { '<leader>a', '<cmd>Alpha<CR>', desc = 'Alpha' },
+      { '<leader>A', '<cmd>Alpha<CR>', desc = 'Alpha' },
       -- { '<leader>e1', '<cmd>Fern %:h<CR>', desc = 'Explorer (Current Buf)' },
       -- { '<leader>e2', '<cmd>Fern ' .. vim.g.poshmodulepath .. '<CR>', desc = 'Explorer (Posh Modules)' },
       -- { '<leader>e3', '<cmd>Fern ' .. vim.g.ahkpath .. '<CR>', desc = 'Explorer (AutoHotKey)' },
@@ -88,7 +88,8 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>t', group = '[T]oggle or [T]ypescript' },
       { '<leader>ti', group = '[I]mports' },
       { '<leader>tf', group = '[F]ile or [F]ix' },
-      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      { '<leader>h', group = '[H]arpoon list', mode = { 'n' } },
+      { '<leader>H', group = 'Git [H]unk', mode = { 'n', 'v' } },
       { '<leader>l', group = 'VimTex', mode = { 'n', 'v' } },
       -- Surrond
       { 'cs', '<Plug>Csurround', desc = 'Change Surrounding' },

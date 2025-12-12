@@ -32,22 +32,10 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      javascript = {
-        { 'prettierd, prettier' },
-        'rustywind',
-      },
-      typescript = {
-        { 'prettierd, prettier' },
-        'rustywind',
-      },
-      javascriptreact = {
-        { 'prettierd, prettier' },
-        'rustywind',
-      },
-      typescriptreact = {
-        { 'prettierd, prettier' },
-        'rustywind',
-      },
+      javascript = { 'prettierd', 'rustywind' },
+      typescript = { 'prettierd', 'rustywind' },
+      javascriptreact = { 'prettierd', 'rustywind' },
+      typescriptreact = { 'prettierd', 'rustywind' },
       cpp = { 'clang_format' },
       c = { 'clang_format' },
       cs = { 'csharpier' },

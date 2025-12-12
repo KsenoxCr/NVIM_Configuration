@@ -25,10 +25,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.api.nvim_buf_set_keymap(0, 'n', 'T', ':VimwikiTable ', { noremap = true })
     vim.api.nvim_buf_set_keymap(0, 'n', 'H', '<cmd>VimwikiTableMoveColumnLeft<CR>', { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(0, 'n', 'L', '<cmd>VimwikiTableMoveColumnRight<CR>', { noremap = true, silent = true })
-    map('n', '<C-p>', require('custom.vimwiki-fn').AddTag, { buffer = 0, desc = 'Add priority tag' })
-    map('n', '<C-c>', function()
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('i- [ ]<Esc>', true, false, true), 'n', false)
-    end, { buffer = 0, desc = 'Insert checkbox' })
   end,
 })
 

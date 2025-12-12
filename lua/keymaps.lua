@@ -5,7 +5,7 @@ local map = vim.keymap.set
 -- Set cursor incase neoscroll bug hides cursor
 
 map('n', '<leader>Sc', function()
-  mapm.api.nvim_command ':set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
+  vim.api.nvim_command ':set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 end, { desc = 'Set visible cursor' })
 
 -- Copying messages into clipboard
@@ -103,12 +103,12 @@ map('n', '<leader>eW', function()
 end, { noremap = true, silent = true, desc = 'Explorer ([W]eek Plans)' })
 
 map('n', '<leader>ep', function()
-  vim.cmd('Fern ' .. vim.g.practice)
-end, { noremap = true, silent = true, desc = 'Explorer ([P]ractice)' })
-
-map('n', '<leader>eP', function()
   vim.cmd('Fern ' .. vim.g.programming)
 end, { noremap = true, silent = true, desc = 'Explorer ([P]rogramming)' })
+
+map('n', '<leader>eP', function()
+  vim.cmd('Fern ' .. vim.g.practice)
+end, { noremap = true, silent = true, desc = 'Explorer ([P]ractice)' })
 
 map('n', '<leader>eg', function()
   vim.cmd('Fern ' .. vim.g.wikidir)
