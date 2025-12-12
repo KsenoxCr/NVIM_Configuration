@@ -1,19 +1,4 @@
--- NOTE: Create Copy of Current Buffers file
-
-vim.api.nvim_create_user_command('CopyCurrentFile', function()
-  local cur_buf_path = vim.api.nvim_buf_get_name(0)
-
-  if cur_buf_path == '' then
-    print 'No buffer selected'
-    return
-  end
-
-  local temp_dir = 'D:\\Temp\\nvim'
-
-  local cmd = 'copy /Y ' .. cur_buf_path .. ' ' .. temp_dir
-
-  vim.fn.system(cmd)
-end, { desc = "Copy current buffer's file to temp dir" })
+-- [[ User Commands ]]
 
 -- Claude in Pseudo Terminal
 
@@ -31,6 +16,7 @@ vim.api.nvim_create_user_command('ClipMessage', function()
 end, { desc = 'Copy messages to clipboard' })
 
 -- Insert Template into current buffer
+
 vim.api.nvim_create_user_command('InsertTemplate', function(opts)
   vim.cmd(':read ' .. vim.g.templatepath .. '/' .. opts.args)
 end, { nargs = 1, desc = 'Insert Template into current buffer' })
@@ -49,9 +35,9 @@ end, { nargs = 1, desc = 'Test wheter <Plug> exists or not' })
 
 vim.api.nvim_create_user_command('TSInstallInfoList', function()
   print(vim.inspect(require('nvim-treesitter.info').installed_parsers()))
-end, { desc = 'Copy messages to clipboard' })
+end, { desc = 'List installed parsers' })
 
--- DAP
+-- Debugger Adapter Protocol (DAP)
 
 vim.api.nvim_create_user_command('DapViewConfigs', function()
   print(vim.inspect(require('dap').configurations))

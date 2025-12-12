@@ -1,65 +1,47 @@
 vim.env.LANG = 'en_US.UTF-8'
 
+-- VimWiki
+
 local os_name = jit.os
 
--- NOTE: VimWiki
+-- Globals
 
-local wikiDir
+vim.g.have_nerd_font = true
 
-if os_name == 'Windows' then
-  wikiDir = os.getenv 'USERPROFILE' .. '/OneDrive/Tiedostot/Gods_Plan/'
-elseif os_name == 'Linux' then
-  wikiDir = os.getenv 'HOME' .. '/gods_plan'
-end
+-- Paths
 
-if require('utils').is_dir(wikiDir) then
-  vim.g.vimwiki_list = {
-    { path = wikiDir, syntax = 'markdown', ext = '.md', custom_wiki2html = 'pandoc', links_space_char = '_', list_type = 2 },
-  }
-end
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- NOTE: Globals
+-- Windows only
 
 if os_name == 'Windows' then
+  vim.g.wikidir = os.getenv 'USERPROFILE' .. '/OneDrive/Tiedostot/Gods_Plan/'
   vim.g.appdata = os.getenv 'LOCALAPPDATA'
-  vim.g.root = 'C:/'
-  vim.g.tech_problems = 'C:/Users/aksum/OneDrive/Gods_Plan/Tech_Problems.md'
-  vim.g.brain_ram = 'C:/Users/aksum/OneDrive/Gods_Plan/Brain_Ram.md'
-  vim.g.paths = 'C:/Users/aksum/OneDrive/Gods_Plan/Paths.md'
-  vim.g.documents = 'C:/Users/aksum/OneDrive/Gods_Plan/Documentations.md'
+  vim.g.fsroot = 'C:/'
   vim.g.weeks = 'C:/Users/aksum/OneDrive/Gods_Plan/weeks'
-  vim.g.toolspath = 'C:/Tools'
-elseif os_name == 'Linux' then
+end
+
+-- Linux only
+
+if os_name == 'Linux' then
+  vim.g.wikidir = os.getenv 'HOME' .. '/gods_plan'
+  vim.g.appdata = os.getenv 'HOME' .. '/share/local'
+  vim.g.fsroot = '/'
   vim.g.practice = '~/programming/practice'
   vim.g.tmuxconf = '~/.tmux.conf'
   vim.g.tmuxinator = '~/.config/tmuxinator'
-  vim.g.appdata = os.getenv 'HOME' .. '/share/local'
-  vim.g.root = '/'
-  vim.g.mapleader = ' '
-  vim.g.maplocalleader = ' '
   vim.g.programming = '~/programming'
   vim.g.templatepath = '~/templates'
   vim.g.aiprompts = '~/ai_prompt_library'
   vim.g.posh = '~/scripting/posh'
   vim.g.bash = '~/scripting/bash'
-  vim.g.n8n = '~/scripting/n8n'
-  vim.g.profilepath = '~/scripting/shell_profiles'
-  vim.g.ahkpath = '~/scripting/ahk'
-  vim.g.godsplan = wikiDir
-  vim.g.dotnetpath = '~/programming/dotnet'
-  vim.g.school = '~/school'
   vim.g.scripting = '~/scripting'
   vim.g.claudeconf = '~/.config/Claude/claude_desktop_config.json'
-  vim.g.bash = '~/scripting/bash'
   vim.g.weeks = '~/gods_plan/weeks'
   vim.g.swap = vim.fn.stdpath 'data' .. '/swap'
   vim.g.bashrc = '~/.bashrc'
   vim.g.zshrc = '~/.zshrc'
-  vim.g.toolspath = '/usr/share'
-  vim.g.tech_problems = '~/gods_plan/Tech_Problems.md'
-  vim.g.brain_ram = '~/gods_plan/Brain_Ram.md'
-  vim.g.paths = '~/gods_plan/Paths.md'
-  vim.g.documents = '~/gods_plan/Documentations.md'
   vim.g.weeks = '~/gods_plan/weeks'
   vim.g.hyprconf = '~/.config/hypr/hyprland.conf'
   vim.g.swayconf = '~/.config/sway/config'
@@ -68,9 +50,7 @@ elseif os_name == 'Linux' then
   vim.g.waybarcss = '~/.config/waybar/style.css'
 end
 
-vim.g.have_nerd_font = true
-
--- NOTE: Filetype extensions
+-- Filetype extensions
 
 vim.filetype.add {
   extension = {
@@ -79,8 +59,10 @@ vim.filetype.add {
   },
 }
 
--- NOTE: OPTIONS
+-- OPTIONS
 
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
 vim.o.conceallevel = 0
 vim.opt.compatible = false
 vim.opt.number = true
@@ -105,6 +87,14 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
+
+-- VimWiki
+
+if require('utils').is_dir(vim.g.wikidir) then
+  vim.g.vimwiki_list = {
+    { path = vim.g.wikidir, syntax = 'markdown', ext = '.md', custom_wiki2html = 'pandoc', links_space_char = '_', list_type = 2 },
+  }
+end
 
 vim.cmd 'filetype plugin on'
 
