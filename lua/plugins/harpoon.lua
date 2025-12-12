@@ -42,7 +42,7 @@ return {
       harpoon:list():add()
     end)
 
-    map('n', '<leader>R', function()
+    map('n', '<leader>x', function()
       harpoon:list():remove()
     end)
 

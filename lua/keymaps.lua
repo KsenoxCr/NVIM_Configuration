@@ -192,8 +192,8 @@ if os_name == 'Linux' then
   map('n', '<leader>fb', ':e ' .. vim.g.bashrc .. '<CR>', { desc = 'Open [B]ash config' })
   map('n', '<leader>fz', ':e ' .. vim.g.zshrc .. '<CR>', { desc = 'Open [Z]sh config' })
   map('n', '<leader>fk', ':e ' .. vim.g.kittyconf .. '<CR>', { desc = 'Open [K]itty config' })
-  map('n', '<leader>fWc', ':e ' .. vim.g.waybarconf .. '<CR>', { desc = 'Open [C]onfig' })
-  map('n', '<leader>fWs', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]tylesheet' })
+  map('n', '<leader>fwc', ':e ' .. vim.g.waybarconf .. '<CR>', { desc = 'Open [C]onfig' })
+  map('n', '<leader>fws', ':e ' .. vim.g.waybarcss .. '<CR>', { desc = 'Open [S]tylesheet' })
 end
 
 map('n', '<leader>fc', ':e ' .. vim.g.claudeconf .. '<CR>', { desc = 'Open [C]laude config' })
