@@ -34,7 +34,17 @@ return { -- Main LSP Configuration
 
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        -- Custom rename function without pre-filled text
+        local custom_rename = function()
+          vim.ui.input({ prompt = 'New name: ' }, function(input)
+            if input then
+              vim.lsp.buf.rename(input)
+            end
+          end)
+        end
+
+        map('<leader>rn', custom_rename, '[R]e[n]ame')
+        map('<leader>cr', custom_rename, '[R]e[n]ame')
 
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 

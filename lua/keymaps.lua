@@ -207,6 +207,8 @@ map('n', '<leader>fT', ':e ' .. vim.g.tmuxinator .. '<CR>', { desc = 'Open [T]mu
 map('n', '<leader>cs', ':ClaudePTerm --model sonnet<CR>', { desc = 'Claude Sonnet' })
 map('n', '<leader>ch', ':ClaudePTerm --model haiku<CR>', { desc = 'Claude Haiku' })
 map('n', '<leader>cS', ':ClaudePTerm --continue<CR>', { desc = 'Claude Continue' })
+map('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Copilot disable' })
+map('n', '<leader>ce', ':Copilot enable<CR>', { desc = 'Copilot enable' })
 
 -- Telescope
 
