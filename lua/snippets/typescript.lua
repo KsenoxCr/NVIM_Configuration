@@ -3,6 +3,9 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 
+ls.filetype_extend('typescriptreact', { 'typescript', 'javascript' })
+ls.filetype_extend('javascriptreact', { 'javascript' })
+
 ls.add_snippets('typescript', {
   -- Trigger: 'cl' -> Expands to: console.log(...)
   s('cl', {

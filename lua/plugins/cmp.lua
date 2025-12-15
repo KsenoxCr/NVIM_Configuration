@@ -35,23 +35,25 @@ return { -- Autocompletion
     luasnip.filetype_extend('typescript', { 'javascript' })
     luasnip.filetype_extend('typescriptreact', { 'javascript' })
 
+    require 'snippets/typescript'
+
     require 'cmp_luasnip'
 
     cmp.setup { -- TODO: diagnose luasnip typescript issue; then uncomment formatting
-      -- formatting = {
-      --   format = function(entry, vim_item)
-      --     local color_item = require('nvim-highlight-colors').format(entry, { kind = vim_item.kind })
-      --     vim_item = require('lspkind').cmp_format {
-      --       mode = 'symbol_text',
-      --       maxwidth = 50,
-      --     }(entry, vim_item)
-      --     if color_item.abbr_hl_group then
-      --       vim_item.kind_hl_group = color_item.abbr_hl_group
-      --       vim_item.kind = color_item.abbr
-      --     end
-      --     return vim_item
-      --   end,
-      -- },
+      formatting = {
+        format = function(entry, vim_item)
+          local color_item = require('nvim-highlight-colors').format(entry, { kind = vim_item.kind })
+          vim_item = require('lspkind').cmp_format {
+            mode = 'symbol_text',
+            maxwidth = 50,
+          }(entry, vim_item)
+          if color_item.abbr_hl_group then
+            vim_item.kind_hl_group = color_item.abbr_hl_group
+            vim_item.kind = color_item.abbr
+          end
+          return vim_item
+        end,
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
