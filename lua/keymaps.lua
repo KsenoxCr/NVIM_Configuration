@@ -156,9 +156,32 @@ end
 
 -- Template
 
-map('n', '<leader>T', function()
+map('n', '<leader>tt', function()
   vim.api.nvim_feedkeys(':InsertTemplate ', 'n', true)
 end, { desc = 'Insert [T]emplate (currentBuf)' })
+
+-- Neotest
+
+local neotest = require 'neotest'
+
+map('n', '<leader>Tr', function()
+  neotest.run.run()
+end, { desc = 'Neotest: Nearest test' })
+map('n', '<leader>Tf', function()
+  neotest.run.run(vim.fn.expand '%')
+end, { desc = 'Neotest: All tests in file' })
+map('n', '<leader>Ts', function()
+  neotest.summary.toggle()
+end, { desc = 'Neotest: Summary Window' })
+map('n', '<leader>TS', function()
+  neotest.run.stop()
+end, { desc = 'Neotest: Stop nearest test' })
+map('n', '<leader>To', function()
+  neotest.output.open()
+end, { desc = 'Neotest: Toggle output' })
+map('n', '<leader>TO', function()
+  neotest.output_panel.toggle()
+end, { desc = 'Neotest: Toggle output panel' })
 
 -- TypeScript tools
 

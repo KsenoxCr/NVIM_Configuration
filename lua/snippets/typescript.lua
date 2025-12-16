@@ -14,6 +14,13 @@ ls.add_snippets('typescript', {
     t ');',
   }),
 
+  -- Trigger: 'lm' -> Expands to: () => {}  (lambda)
+  s('lm', {
+    t '() => {',
+    i(1),
+    t '}',
+  }),
+
   -- Trigger: 'af' -> Arrow Function
   s('af', {
     t 'const ',

@@ -198,6 +198,8 @@ return { -- Main LSP Configuration
       'powershell-editor-services',
       'bash-language-server',
       'pylsp',
+      'js-debug-adapter',
+      -- 'bashdb'
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
