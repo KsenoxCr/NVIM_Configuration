@@ -64,6 +64,13 @@ return {
       desc = 'Debug: Set Breakpoint',
     },
     {
+      '<leader>rb',
+      function()
+        require('dap').clear_breakpoints()
+      end,
+      desc = 'Debug: Clear Breakpoints',
+    },
+    {
       '<F7>',
       function()
         require('dapui').toggle()
@@ -136,11 +143,67 @@ return {
       },
     }
 
-    -- Powershell (your original has a bug; leave behavior minimal + correct)
-    -- If you actually want ps1/psm1, uncomment your adapter + configurations.
-    -- dap.configurations.ps1 = { ... }
-    -- dap.configurations.powershell = dap.configurations.ps1
-    -- dap.configurations.psm1 = dap.configurations.ps1
+    -- JS/TS via Mason's js-debug-adapter
+
+    local js_debug_path = vim.fn.stdpath 'data' .. '/mason/packages/js-debug-adapter'
+
+    dap.adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = 8123,
+      executable = {
+        command = 'node',
+        args = { js_debug_path .. '/js-debug/src/dapDebugServer.js', '8123' },
+      },
+    }
+
+    dap.adapters['pwa-chrome'] = {
+      type = 'server',
+      host = 'localhost',
+      port = 8124,
+      executable = {
+        command = 'node',
+        args = { js_debug_path .. '/js-debug/src/dapDebugServer.js', '8124' },
+      },
+    }
+
+    local function pick_file()
+      return vim.fn.expand '%:p'
+    end
+
+    dap.configurations.typescript = {
+      -- A) Run current TS file (no project)
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'TS: run current file (tsx)',
+        cwd = vim.fn.getcwd(),
+        runtimeExecutable = 'node',
+        runtimeArgs = {
+          '--inspect',
+          -- use tsx to execute TS directly:
+          vim.fn.exepath 'tsx',
+        },
+        args = { pick_file() },
+        sourceMaps = true,
+        console = 'integratedTerminal',
+        internalConsoleOptions = 'neverOpen',
+        skipFiles = { '<node_internals>/**', '**/node_modules/**' },
+      },
+
+      -- B) Attach to an already-running node --inspect process
+      {
+        type = 'pwa-node',
+        request = 'attach',
+        name = 'Node: attach (9229)',
+        port = 9229,
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        skipFiles = { '<node_internals>/**', '**/node_modules/**' },
+      },
+    }
+
+    dap.configurations.javascript = dap.configurations.typescript
 
     -- DAP UI
     dapui.setup {
@@ -159,55 +222,6 @@ return {
         },
       },
     }
-
-    -- JS/TS via Mason's js-debug-adapter
-
-    local mason_bin = vim.fn.stdpath 'data' .. '/mason/bin/js-debug-adapter'
-    -- if vim.fn.has 'win32' == 1 then
-    --   js_debug_cmd = mason_bin .. '.cmd'
-    -- end
-
-    dap.adapters['pwa-node'] = {
-      type = 'server',
-      host = '127.0.0.1',
-      port = '${port}',
-      executable = {
-        command = mason_bin,
-        args = { '${port}' },
-      },
-    }
-
-    for _, ft in ipairs { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' } do
-      dap.configurations[ft] = dap.configurations[ft] or {}
-      vim.list_extend(dap.configurations[ft], {
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch TS (ts-node/register)',
-          cwd = '${workspaceFolder}',
-          program = '${file}',
-          runtimeExecutable = 'node',
-          runtimeArgs = { '--enable-source-maps', '-r', 'ts-node/register' },
-          sourceMaps = true,
-          protocol = 'inspector',
-          console = 'integratedTerminal',
-          skipFiles = { '<node_internals>/**', '${workspaceFolder}/node_modules/**' },
-        },
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch TS (ts-node/esm)',
-          cwd = '${workspaceFolder}',
-          program = '${file}',
-          runtimeExecutable = 'node',
-          runtimeArgs = { '--enable-source-maps', '--loader', 'ts-node/esm' },
-          sourceMaps = true,
-          protocol = 'inspector',
-          console = 'integratedTerminal',
-          skipFiles = { '<node_internals>/**', '${workspaceFolder}/node_modules/**' },
-        },
-      })
-    end
 
     -- Breakpoint icons
 
