@@ -32,4 +32,17 @@ ls.add_snippets('typescript', {
     i(0), -- i(0) is the final cursor position
     t { '', '};' },
   }),
+
+  -- Trigger: 'for' -> For loop with let i
+  s({
+    trig = 'for',
+    priority = 2000, -- Higher priority than default snippets
+  }, {
+    t 'for (let i = 0; i < ',
+    i(1, 'length'),
+    t '; i++) {',
+    t { '', '\t' },
+    i(0),
+    t { '', '}' },
+  }),
 })

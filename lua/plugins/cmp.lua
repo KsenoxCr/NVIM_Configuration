@@ -30,16 +30,18 @@ return { -- Autocompletion
 
     luasnip.config.setup {}
 
+    -- Load custom snippets FIRST (they get higher priority)
+    require 'snippets/typescript'
+
+    -- Load default snippets AFTER custom ones
     require('luasnip.loaders.from_vscode').lazy_load()
 
     luasnip.filetype_extend('typescript', { 'javascript' })
     luasnip.filetype_extend('typescriptreact', { 'javascript' })
 
-    require 'snippets/typescript'
-
     require 'cmp_luasnip'
 
-    cmp.setup { -- TODO: diagnose luasnip typescript issue; then uncomment formatting
+    cmp.setup {
       formatting = {
         format = function(entry, vim_item)
           local color_item = require('nvim-highlight-colors').format(entry, { kind = vim_item.kind })
@@ -115,12 +117,12 @@ return { -- Autocompletion
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
       sources = {
-        { name = 'luasnip' },
-        { name = 'copilot' },
+        { name = 'luasnip', priority = 1000 },
+        { name = 'copilot', priority = 900 },
         { name = 'lazydev', group_index = 0 },
-        { name = 'nvim_lsp' },
-        { name = 'path' },
-        { name = 'nvim_lsp_signature_help' },
+        { name = 'nvim_lsp', priority = 800 },
+        { name = 'path', priority = 700 },
+        { name = 'nvim_lsp_signature_help', priority = 600 },
       },
     }
   end,
