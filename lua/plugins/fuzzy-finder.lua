@@ -106,6 +106,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
       }
     end, { desc = '[S]earch [/] in Open Files' })
 
+    vim.keymap.set('n', '<leader>sa', function()
+      builtin.find_files { cwd = vim.g.aiprompts }
+    end, { desc = '[S]earch in [A]i Prompts' })
+
     vim.keymap.set('n', '<leader>sh', function()
       builtin.find_files { cwd = (os.getenv 'HOME') }
     end, { desc = '[S]earch in [H]ome' })
@@ -185,8 +189,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
     end, { desc = '[G]rep inside Posh Modules' })
 
     vim.keymap.set('n', '<leader>ga', function()
-      builtin.live_grep { cwd = vim.g.ahkpath }
-    end, { desc = '[G]rep inside AutoHotKey' })
+      builtin.live_grep { cwd = vim.g.aiprompts }
+    end, { desc = '[G]rep inside [A]I Prompts' })
 
     vim.keymap.set('n', '<leader>gg', function()
       builtin.live_grep { cwd = vim.g.ahkpath }
