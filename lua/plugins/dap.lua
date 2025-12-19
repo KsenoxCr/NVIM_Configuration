@@ -201,6 +201,54 @@ return {
         sourceMaps = true,
         skipFiles = { '<node_internals>/**', '**/node_modules/**' },
       },
+
+      -- C) Debug vitest: current file
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Vitest: debug current file',
+        cwd = vim.fn.getcwd(),
+        runtimeExecutable = 'node',
+        runtimeArgs = {
+          '--inspect-brk',
+          vim.fn.getcwd() .. '/node_modules/vitest/vitest.mjs',
+          'run',
+          vim.fn.expand '%:p',
+          '--pool=forks',
+        },
+        console = 'integratedTerminal',
+        internalConsoleOptions = 'neverOpen',
+        autoAttachChildProcesses = true,
+        sourceMaps = true,
+        skipFiles = { '<node_internals>/**', '**/node_modules/**' },
+      },
+
+      -- D) Debug vitest: by name pattern (-t)
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Vitest: debug by test name (-t)',
+        cwd = vim.fn.getcwd(),
+        runtimeExecutable = 'node',
+        runtimeArgs = {
+          '--inspect-brk',
+          vim.fn.getcwd() .. '/node_modules/vitest/vitest.mjs',
+          'run',
+          '--pool=forks',
+        },
+        args = function()
+          local pat = vim.fn.input 'Vitest -t pattern: '
+          if pat == nil or pat == '' then
+            return {}
+          end
+          return { '-t', pat }
+        end,
+        console = 'integratedTerminal',
+        internalConsoleOptions = 'neverOpen',
+        autoAttachChildProcesses = true,
+        sourceMaps = true,
+        skipFiles = { '<node_internals>/**', '**/node_modules/**' },
+      },
     }
 
     dap.configurations.javascript = dap.configurations.typescript
