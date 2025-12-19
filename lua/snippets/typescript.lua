@@ -45,4 +45,16 @@ ls.add_snippets('typescript', {
     i(0),
     t { '', '}' },
   }),
+  -- Trigger: 'for2' -> For loop with let j
+  s({
+    trig = 'for2',
+    priority = 2000, -- Higher priority than default snippets
+  }, {
+    t 'for (let j = 0; j < ',
+    i(1, 'length'),
+    t '; j++) {',
+    t { '', '\t' },
+    i(0),
+    t { '', '}' },
+  }),
 })
