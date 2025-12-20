@@ -51,6 +51,8 @@ require('lazy').setup {
 require 'keymaps'
 require 'configs.init'
 
+vim.cmd ':Copilot disable'
+
 -- Sets colors to comments, line numbers Above, Current and Below  in this order
 vim.o.termguicolors = true
 vim.api.nvim_set_hl(0, 'Comment', { fg = '#A0A0A0' })
