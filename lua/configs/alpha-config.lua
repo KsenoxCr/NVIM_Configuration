@@ -32,7 +32,7 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-  return 'Work till your head hurts -E.Musk'
+  return 'Errors are training data for my brain, not obstacles to remove.'
 end
 
 dashboard.section.footer.val = footer()
