@@ -199,7 +199,7 @@ return { -- Main LSP Configuration
       'bash-language-server',
       'pylsp',
       'js-debug-adapter',
-      -- 'bashdb'
+      'bashls',
     })
 
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }

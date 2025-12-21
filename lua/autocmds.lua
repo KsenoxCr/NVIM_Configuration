@@ -1,6 +1,17 @@
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+-- local lspconfig = require 'lspconfig'
+-- local configs = require 'lspconfig.configs'
+--
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'zsh',
+--   callback = function(args)
+--     -- start/attach bashls for this buffer
+--     lspconfig.bashls.manager.try_add_wrapper(args.buf)
+--   end,
+-- })
+
 local map = vim.keymap.set
 
 vim.api.nvim_create_autocmd('FileType', {
