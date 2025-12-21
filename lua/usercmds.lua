@@ -12,7 +12,7 @@ end, { nargs = '*', desc = 'Open Claude in pseudo terminal' })
 vim.api.nvim_create_user_command('CodexPTerm', function(opts)
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_open_win(buf, true, { split = 'right', win = 0 })
-  local cmd = 'codex' .. opts.args
+  local cmd = 'codex ' .. opts.args
   vim.fn.termopen(cmd)
 end, { nargs = '*', desc = 'Open Claude in pseudo terminal' })
 
