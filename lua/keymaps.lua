@@ -2,6 +2,14 @@ local map = vim.keymap.set
 
 -- OS-agnostic
 
+-- DevDocs
+
+vim.keymap.set('n', '<leader>d', function()
+  local word = vim.fn.expand '<cword>'
+  local url = 'https://devdocs.io/#q=' .. vim.fn.escape(word, ' ')
+  vim.fn.jobstart({ 'xdg-open', url }, { detach = true })
+end, { desc = 'Search DevDocs' })
+
 -- Set cursor incase neoscroll bug hides cursor
 
 map('n', '<leader>Sc', function()
