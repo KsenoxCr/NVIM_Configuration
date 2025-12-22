@@ -5,7 +5,7 @@ return { -- Main LSP Configuration
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'nvimtools/none-ls.nvim',
-    'jay-babu/mason-null-ls.nvim',
+    -- 'jay-babu/mason-null-ls.nvim',
 
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },

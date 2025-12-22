@@ -1,5 +1,13 @@
 -- [[ User Commands ]]
 
+-- DevDocs
+
+vim.api.nvim_create_user_command('DevDocs', function()
+  local word = vim.fn.expand '<cword>'
+  local url = 'https://devdocs.io/#q=' .. vim.fn.escape(word, ' ')
+  vim.fn.jobstart({ 'xdg-open', url }, { detach = true })
+end, { nargs = 0, desc = 'DevDocs' })
+
 -- Claude in Pseudo Terminal
 
 vim.api.nvim_create_user_command('ClaudePTerm', function(opts)

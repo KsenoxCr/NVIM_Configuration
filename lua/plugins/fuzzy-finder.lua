@@ -146,21 +146,25 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- Shortcut for sarching files in Work directory
 
+    vim.keymap.set('n', '<leader>sp', function()
+      builtin.find_files { cwd = vim.g.global_workpath }
+    end, { desc = '[S]earch [P]rogramming' })
+
     vim.keymap.set('n', '<leader>sF', function()
       builtin.find_files { cwd = vim.g.global_workpath }
-    end, { desc = '[S]earch Work Files' })
+    end, { desc = '[S]earch Work [F]iles' })
 
     vim.keymap.set('n', '<leader>sg', function()
       builtin.find_files { cwd = vim.g.global_workpath }
-    end, { desc = '[S]earch Gods plan' })
+    end, { desc = '[S]earch [G]ods plan' })
 
     vim.keymap.set('n', '<leader>gs', function()
       builtin.find_files { cwd = vim.g.school }
-    end, { desc = '[S]earch inside School Directory' })
+    end, { desc = '[S]earch [S]chool Directory' })
 
     vim.keymap.set('n', '<leader>sW', function()
       builtin.live_grep { cwd = vim.g.global_workpath }
-    end, { desc = '[S]earch inside Work Files' })
+    end, { desc = '[S]earch [W]ork Files' })
 
     -- NOTE: Grepping
 
@@ -186,7 +190,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     vim.keymap.set('n', '<leader>gp', function()
       builtin.live_grep { cwd = vim.g.poshmodulepath }
-    end, { desc = '[G]rep inside Posh Modules' })
+    end, { desc = '[G]rep inside programming' })
 
     vim.keymap.set('n', '<leader>ga', function()
       builtin.live_grep { cwd = vim.g.aiprompts }
